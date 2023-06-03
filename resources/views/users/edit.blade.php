@@ -29,7 +29,11 @@
                     <label class="block font-medium">Permissions</label>
                         @foreach ($permissions as $permission)
                             <div class="flex items-center mt-2">
-                                <input id="permission-{{ $permission->id }}" name="permissions[]" type="checkbox" value="{{ $permission->id }}" class="form-checkbox">
+                                <input id="permission-{{ $permission->id }}" name="permissions[]" type="checkbox" value="{{ $permission->id }}" class="form-checkbox" 
+                                @if (in_array($permission->id, $user_permissions))
+                                  checked
+                                @endif
+                                >
                                 <label for="permission-{{ $permission->id }}" class="ml-2">{{ $permission->name }}</label>
                             </div>
                         @endforeach

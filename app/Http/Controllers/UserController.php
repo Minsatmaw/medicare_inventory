@@ -109,8 +109,12 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $permissions = Permission::all();
+        $user_permissions = [];
+        foreach($user->permissions as $permission){
+          $user_permissions[]=$permission->id;
+        };
 
-        return view('users.edit', compact('user', 'roles', 'permissions'));
+        return view('users.edit', compact('user', 'roles', 'permissions', 'user_permissions'));
     }
 
     /**
