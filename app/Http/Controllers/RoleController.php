@@ -105,7 +105,7 @@ class RoleController extends Controller
             'name' => $validatedData['name'],
             'slug' => $validatedData['slug'],
             'description' => $validatedData['description'],
-            // 'permissions' => $validatedData['permissions'],
+            'permissions' => $validatedData['permissions'],
         ]);
 
         $role->permissions()->sync($validatedData['permissions'] ?? []);

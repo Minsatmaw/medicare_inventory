@@ -97,11 +97,28 @@ class User extends Authenticatable
         return $role->intersect($this->roles)->count() > 0;
     }
 
+    // public function hasPermission($permission)
+    // {
+    //     return $this->roles->flatMap(function($role){
+    //         return $role->permissions->pluck('slug');
+    //     })->contains($permission);
+    // }
+
     public function hasPermission($permission)
-    {
-        return $this->roles->flatMap(function($role){
-            return $role->permissions->pluck('slug');
-        })->contains($permission);
+{
+    // Check if the user has the permission directly assigned
+    if ($this->permissions->contains('slug', $permission)) {
+        return true;
     }
+
+    // Check if any of the user's roles have the permission
+    foreach ($this->roles as $role) {
+        if ($role->permissions->contains('slug', $permission)) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 }

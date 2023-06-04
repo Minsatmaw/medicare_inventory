@@ -53,13 +53,12 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(User $user)
     {
         $roles = Role::all();
-        $permissions = Permission::all();
 
 
-        return view('users.create',compact('roles', 'permissions'));
+        return view('users.create',compact('roles'));
     }
 
     /**
@@ -122,18 +121,42 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|email|unique:users,email,' . $user->id,
+        //     'role' => 'required',
+        //     'permissions' => 'array',
+
+        // ]);
+
+        // $user->name = $request->name;
+        // $user->email = $request->email;
+        // $user->save();
+
+        $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'role' => 'required'
+            'role' => 'required',
+            'permissions' => 'nullable|array',
         ]);
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
+        $user->update([
+           'name' => $validatedData['name'],
+           'email' => $validatedData['email'],
+           'role' => $validatedData['role'],
+           'permissions' => $validatedData['permissions'],
+        ]);
 
         $role = Role::findOrFail($request->role);
         $user->roles()->sync([$role->id]);
+
+        // $permissions = $role->permissions()->pluck('id');
+        // $user->permissions()->attach($permissions);
+
+        if ($request->has('permissions')) {
+            $permissions = Permission::whereIn('id', $request->input('permissions'))->get();
+            $user->permissions()->sync($permissions); // Use sync instead of attach to replace existing permission associations
+        }
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
 
