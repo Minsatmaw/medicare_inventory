@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('main.master')
 
-@section('content')
+@section('body')
     <div class="py-4">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="inline-block min-w-full overflow-hidden align-middle">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold">Users</h2>
+                <h2 class="text-2xl font-bold">Users List</h2>
                 @can('user-create')
-                    <a href="{{ route('users.create') }}" class="px-4 py-2 text-black bg-blue-500 rounded ">Create User</a>
+                    <a href="{{ route('users.create') }}" class="px-4 py-2 text-white bg-blue-500 rounded ">Create User</a>
                 @endcan
             </div>
 
@@ -14,13 +14,13 @@
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 border-b border-gray-200">Name</th>
-                            <th class="px-4 py-2 border-b border-gray-200">Email</th>
-                            <th class="px-4 py-2 border-b border-gray-200">Roles</th>
-                            <th class="px-4 py-2 border-b border-gray-200">Actions</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Name</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Email</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Roles</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="bg-white">
                         @foreach ($users as $user)
                             <tr>
                                 <td class="px-4 py-2 text-center border-b border-gray-200 ">{{ $user->name }}</td>

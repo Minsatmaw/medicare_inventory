@@ -1,23 +1,25 @@
-@extends('layouts.app')
+@extends('main.master')
 
-@section('content')
+@section('body')
     <div class="py-4">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="inline-block min-w-full overflow-hidden align-middle ">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold">Roles</h2>
-                <a href="{{ route('permissions.create') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Create Permission</a>
+                <h2 class="text-2xl font-bold">Permissions List</h2>
+                @can('permission-create')
+                    <a href="{{ route('permissions.create') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Create Permission</a>
+                @endcan
             </div>
             @if ($permissions->count() > 0)
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 border-b border-gray-200">Name</th>
-                            <th class="px-4 py-2 border-b border-gray-200">Slug</th>
-                            <th class="px-4 py-2 border-b border-gray-200">Description</th>
-                            <th class="px-4 py-2 border-b border-gray-200">Actions</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Name</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Slug</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Description</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="bg-white ">
                         @foreach ($permissions as $permission)
                             <tr>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $permission->name }}</td>
@@ -25,12 +27,17 @@
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $permission->description }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">
                                     {{-- <a href="{{ route('permissions.show', $permission->id) }}" class="text-blue-500 hover:underline">View</a> --}}
-                                    <a href="{{ route('permissions.edit', $permission->id) }}" class="text-yellow-500 hover:underline">Edit</a>
-                                    <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-500 hover:underline">Delete</button>
-                                    </form>
+                                    @can('permission-edit')
+                                        <a href="{{ route('permissions.edit', $permission->id) }}" class="text-yellow-500 hover:underline">Edit</a>
+                                    @endcan
+                                    @can('permission-delete')
+                                        <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 hover:underline">Delete</button>
+                                        </form>
+                                    @endcan
+
                                 </td>
                             </tr>
                         @endforeach

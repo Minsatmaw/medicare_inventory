@@ -22,13 +22,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/userlist', function () {
+//     return view('main.userlist');
+// });
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('main.dashboard');
     })->name('dashboard');
 
     Route::resource('users', UserController::class);
@@ -37,6 +41,9 @@ Route::middleware([
     // Route::middleware(['auth', 'can:view-users'])->resource('users', UserController::class);
     // Route::middleware(['auth', 'can:view-roles'])->resource('roles', RoleController::class);
     // Route::middleware(['auth', 'can:view-permissions'])->resource('permissions', PermissionController::class);
+
+
+
 
 });
 
