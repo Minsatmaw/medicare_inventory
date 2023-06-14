@@ -12,44 +12,74 @@
         </div>
     </div>
 
-    <nav class="mt-10">
-        <a class="flex items-center px-6 py-2 mt-4 text-gray-100 hover:bg-gray-700 hover:bg-opacity-25" href="/dashboard">
-            {{-- <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-            </svg> --}}
 
-            <span class="mx-3">Dashboard</span>
-        </a>
+    <div class="">
+        <nav class="mt-10">
+            <ul>
+                <li class="{{ Request::is('dashboard*') ? ' bg-indigo-700' : '' }}">
+                    <a class="flex items-center px-6 py-2 mt-2 text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="/dashboard">
+                        <span class="mx-3">Dashboard</span>
+                    </a>
+                </li>
+                @can('user-list')
+                    <li class="{{ Request::is('users*') ? ' bg-indigo-700' : '' }}">
+                        <a class="flex items-center px-6 py-2 mt-2 text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="{{ route('users.index') }}">
+                            <span class="mx-3">User List</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('role-list')
+                    <li class="{{ Request::is('roles*') ? ' bg-indigo-700' : '' }}">
+                        <a class="flex items-center px-6 py-2 mt-2 text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="{{ route('roles.index') }}">
+                            <span class="mx-3">Roles List</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('permission-list')
+                    <li class="{{ Request::is('permissions*') ? ' bg-indigo-700' : '' }}">
+                        <a class="flex items-center px-6 py-2 mt-2 text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="{{ route('permissions.index') }}">
+                            <span class="mx-3">Permissions List</span>
+                        </a>
+                    </li>
+                @endcan
 
+
+                    <li class="relative" x-data="{ isOpen: false }">
+                        <button class="flex items-center px-6 py-2 mt-4 text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" @click="isOpen = !isOpen">
+                            <span class="mx-3">User List</span>
+                            <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path x-show="!isOpen" fill-rule="evenodd" d="M7.293 8.707a1 1 0 010-1.414l4-4a1 1 0 111.414 1.414L9 9.414l3.707 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                <path x-show="isOpen" fill-rule="evenodd"  d="M6 8.293a1 1 0 011.414 0L10 10.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <ul class="absolute left-0 mt-1 space-y-2 bg-white border border-gray-200 rounded shadow-lg" x-show="isOpen">
+                            <li>
+                                <a class="block px-6 py-2 text-gray-800 hover:bg-gray-100" href="{{ route('users.create') }}">Create User</a>
+                            </li>
+                            <li>
+                                <a class="block px-6 py-2 text-gray-800 hover:bg-gray-100" href="/">Edit User</a>
+                            </li>
+                            <!-- Add more dropdown items as needed -->
+                        </ul>
+                    </li>
+
+            </ul>
+        </nav>
+    </div>
+
+    {{-- <nav class="mt-10">
         @can('user-list')
-            <a class="flex items-center px-6 py-2 mt-4 text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="{{route('users.index')}}">
-                {{-- <svg class="w-6 h-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <a class="flex items-center px-6 py-2 mt-4 text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300" href="{{route('users.index')}}">
+                <svg class="w-6 h-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg> --}}
+                </svg>
 
                 <span class="mx-3">User List</span>
             </a>
-        @endcan
 
-        @can('role-list')
-            <a class="flex items-center px-6 py-2 mt-4 text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="{{route('roles.index')}}">
-                {{-- <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg> --}}
-
-                <span class="mx-3">Roles List</span>
+            <a class="flex items-center px-6 py-2 mt-4 text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('users*') ? ' bg-indigo-700 text-white border' : '' }}" href="{{route('users.index')}}">
+                <span class="mx-3">Dashboard</span>
             </a>
         @endcan
-
-        @can('permission-list')
-            <a class="flex items-center px-6 py-2 mt-4 text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="{{route('permissions.index')}}">
-                {{-- <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg> --}}
-
-                <span class="mx-3">Permissions List</span>
-            </a>
-        @endcan
-    </nav>
+    </nav> --}}
 </div>

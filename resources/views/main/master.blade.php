@@ -18,9 +18,11 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
+    {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script> --}}
 
-    <script src="{{asset('resources/js/app.js')}}"></script>
+
+
+
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -42,7 +44,7 @@
         </div>
     </div>
 
-
+    <script src="{{asset('resources/js/app.js')}}"></script>
 
 </body>
 </html>

@@ -20,16 +20,18 @@
                     <label for="description" class="block mb-1 font-semibold text-gray-700">Description</label>
                     <textarea name="description" id="description" rows="3" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"></textarea>
                 </div>
-                <div class="mb-4">
+                <div class="mb-4 ">
                     <label class="block font-medium">Permissions</label>
-                        @foreach ($permissions as $permission)
-                            <div class="flex items-center mt-2">
-                                <input id="permission-{{ $permission->id }}" name="permissions[]" type="checkbox" value="{{ $permission->id }}" class="form-checkbox">
-                                <label for="permission-{{ $permission->id }}" class="ml-2">{{ $permission->name }}</label>
+                            <div class="grid grid-cols-3 gap-4 ">
+                                @foreach ($permissions as $permission)
+                                    <div class="items-center mt-2 ">
+                                        <input id="permission-{{ $permission->id }}" name="permissions[]" type="checkbox" value="{{ $permission->id }}" class="form-checkbox">
+                                        <label for="permission-{{ $permission->id }}" class="ml-2">{{ $permission->name }}</label>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
                 </div>
-                <div class="mt-4">
+                <div class="mt-5 ">
                     <button type="submit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Create</button>
                     <a href="{{ route('roles.index') }}" class="px-4 py-2 text-gray-700 border border-gray-300 rounded hover:bg-gray-100">Cancel</a>
                 </div>
