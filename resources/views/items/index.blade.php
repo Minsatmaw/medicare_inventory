@@ -18,6 +18,7 @@
                             <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Location</th>
                             <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Stock</th>
                             <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Supplier</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Department</th>
                             <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Actions</th>
                         </tr>
                     </thead>
@@ -29,6 +30,9 @@
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->location->name }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->stock }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->supplier->name }}</td>
+                                <td class="px-4 py-2 text-center border-b border-gray-200">
+                                    <span class="inline-block px-2 py-1 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">{{ $item->department->name }}</span>
+                                </td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">
                                     <a href="{{ route('items.show', $item->id) }}" class="text-blue-500 hover:underline">View</a>
                                     @can('item-create')

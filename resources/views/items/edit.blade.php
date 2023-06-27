@@ -39,10 +39,18 @@
                         @endforeach
                     </select>
                 </div>
+
                 <div class="mb-4">
-                    <label for="stock" class="block mb-1 font-semibold text-gray-700">Stock</label>
-                    <input type="text" name="stock" id="stock" value="{{$item->stock}}" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
+                    <label for="department_id" class="block mb-1 font-semibold text-gray-700">Department</label>
+                    <select name="department_id" id="department_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                        @foreach($departments as $department)
+                            <option value="{{ $department->id }}" {{ $department->id == $item->department_id ? 'selected' : '' }}>
+                                {{ $department->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
+
                 <div class="mb-4">
                     <label for="supplier_id" class="block mb-1 font-semibold text-gray-700">Supplier</label>
                     <select name="supplier_id" id="supplier_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
@@ -52,6 +60,11 @@
                             </option>
                         @endforeach
                     </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="stock" class="block mb-1 font-semibold text-gray-700">Stock</label>
+                    <input type="text" name="stock" id="stock" value="{{$item->stock}}" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
                 </div>
 
                 <div class="mt-4">

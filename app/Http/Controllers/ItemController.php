@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Location;
 use App\Models\Supplier;
+use App\Models\Department;
 use App\Models\Itemcategory;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
@@ -16,7 +17,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::with('itemcategory', 'supplier', 'location')->get();
+        $items = Item::with('itemcategory', 'supplier', 'location', 'department')->get();
         return view('items.index', compact('items'));
 
     }
@@ -29,7 +30,8 @@ class ItemController extends Controller
         $itemcategories = Itemcategory::all();
         $suppliers = Supplier::all();
         $locations = Location::all();
-        return view('items.create', compact('itemcategories', 'suppliers', 'locations'));
+        $departments = Department::all();
+        return view('items.create', compact('itemcategories', 'suppliers', 'locations', 'departments'));
     }
 
     /**
@@ -42,6 +44,7 @@ class ItemController extends Controller
             'itemcategory_id' => 'required',
             'supplier_id' => 'required',
             'location_id' => 'required',
+            'department_id' => 'required',
         ]);
 
         Item::create($request->all());
@@ -57,9 +60,9 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        $items = Item::with('itemcategory', 'supplier', 'location')->get();
+        $items = Item::with('itemcategory', 'supplier', 'location', 'department')->get();
 
-        return view('items.show', compact('item'));
+        return view('items.show', compact('items'));
     }
 
     /**
@@ -70,8 +73,9 @@ class ItemController extends Controller
         $suppliers = Supplier::all();
         $itemcategories = Itemcategory::all();
         $locations = Location::all();
+        $departments = Department::all();
 
-        return view('items.edit', compact('item', 'itemcategories', 'locations', 'suppliers'));
+        return view('items.edit', compact('item', 'itemcategories', 'locations', 'suppliers', 'departments'));
 
     }
 
@@ -85,6 +89,7 @@ class ItemController extends Controller
             'itemcategory_id' => 'required',
             'supplier_id' => 'required',
             'location_id' => 'required',
+            'department_id' => 'required',
         ]);
 
         $item->update($request->all());

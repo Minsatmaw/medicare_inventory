@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('itemcategory_id');
             $table->string('supplier_id');
             $table->string('location_id');
+            $table->string('department_id');
             $table->integer('stock');
             $table->timestamps();
         });

@@ -19,13 +19,20 @@
                     <h3 class="text-lg font-semibold">Location:</h3>
                     <p>{{ $item->location->name }}</p>
                 </div>
+
                 <div class="mb-4">
                     <h3 class="text-lg font-semibold">Location:</h3>
-                    <p>{{ $item->stock }}</p>
+                    <p>{{ $item->department->name }}</p>
                 </div>
+
                 <div class="mb-4">
                     <h3 class="text-lg font-semibold">Location:</h3>
                     <p>{{ $item->supplier->name }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="text-lg font-semibold">Location:</h3>
+                    <p>{{ $item->stock }}</p>
                 </div>
                 <div class="mt-4">
                     <a href="{{ route('items.index') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Back</a>

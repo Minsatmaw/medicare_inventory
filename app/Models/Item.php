@@ -34,4 +34,8 @@ class Item extends Model
         return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 
+    public function department(){
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
 }

@@ -14,5 +14,8 @@ class Department extends Model
         'slug',
     ];
 
+    public function items(){
+        return $this->hasMany(Item::class);
+    }
 
 }
