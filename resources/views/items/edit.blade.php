@@ -9,19 +9,16 @@
             <form action="{{ route('items.update', $item->id) }}" method="POST">
                 @csrf
                 @method('PUT')
+
                 <div class="mb-4">
-                    <label for="item_category_id" class="block mb-1 font-semibold text-gray-700">Item Code</label>
-                    <select name="item_category_id" id="item_category_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        @foreach($itemcategories as $itemcategory)
-                            <option value="{{ $itemcategory->id }}" {{$itemcategory->id == $item->itemcategory_id ? 'selected' : '' }}>
-                                {{ $itemcategory->code }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <label for="code" class="block mb-1 font-semibold text-gray-700">Item Code</label>
+                    <input type="text" name="code" id="code" value="{{$item->code}}" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
                 </div>
+
                 <div class="mb-4">
-                    <label for="item_category_id" class="block mb-1 font-semibold text-gray-700">Item Name</label>
-                    <select name="item_category_id" id="item_category_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                    <label for="item_category_id" class="block mb-1 font-semibold text-gray-700">Category</label>
+                    <select name="itemcategory_id" id="itemcategory_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                        <option value="">Choose a Item Category</option>
                         @foreach($itemcategories as $itemcategory)
                             <option value="{{ $itemcategory->id }}" {{$itemcategory->id == $item->itemcategory_id ? 'selected' : '' }}>
                                 {{ $itemcategory->name }}
@@ -29,42 +26,22 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="mb-4">
-                    <label for="location_id" class="block mb-1 font-semibold text-gray-700">Location</label>
-                    <select name="location_id" id="location_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        @foreach($locations as $location)
-                            <option value="{{ $location->id }}" {{ $location->id == $item->location_id ? 'selected' : '' }}>
-                                {{ $location->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
 
                 <div class="mb-4">
-                    <label for="department_id" class="block mb-1 font-semibold text-gray-700">Department</label>
-                    <select name="department_id" id="department_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        @foreach($departments as $department)
-                            <option value="{{ $department->id }}" {{ $department->id == $item->department_id ? 'selected' : '' }}>
-                                {{ $department->name }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <label for="name" class="block mb-1 font-semibold text-gray-700">Item Name</label>
+                    <input type="text" name="name" id="name" value="{{$item->name}}" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="supplier_id" class="block mb-1 font-semibold text-gray-700">Supplier</label>
                     <select name="supplier_id" id="supplier_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                        <option value="">Choose a Supplier</option>
                         @foreach($suppliers as $supplier)
                             <option value="{{ $supplier->id }}" {{ $supplier->id == $item->supplier_id ? 'selected' : '' }}>
                                 {{ $supplier->name }}
                             </option>
                         @endforeach
                     </select>
-                </div>
-
-                <div class="mb-4">
-                    <label for="stock" class="block mb-1 font-semibold text-gray-700">Stock</label>
-                    <input type="text" name="stock" id="stock" value="{{$item->stock}}" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
                 </div>
 
                 <div class="mt-4">

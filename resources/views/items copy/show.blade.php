@@ -8,25 +8,32 @@
             </div>
             <div class="p-6 bg-white rounded-md shadow-md">
                 <div class="mb-4">
-                    <h3 class="text-lg font-semibold">Item Code:</h3>
-                    <p>{{$item->code}}</p>
+                    <h3 class="text-lg font-semibold">Code:</h3>
+                    <p>{{$item->itemcategory->code}}</p>
                 </div>
-
                 <div class="mb-4">
-                    <h3 class="text-lg font-semibold">Category:</h3>
+                    <h3 class="text-lg font-semibold">Name:</h3>
                     <p>{{ $item->itemcategory->name }}</p>
                 </div>
-
                 <div class="mb-4">
-                    <h3 class="text-lg font-semibold">Item Name:</h3>
-                    <p>{{$item->name}}</p>
+                    <h3 class="text-lg font-semibold">Location:</h3>
+                    <p>{{ $item->location->name }}</p>
                 </div>
 
                 <div class="mb-4">
-                    <h3 class="text-lg font-semibold">Supplier:</h3>
+                    <h3 class="text-lg font-semibold">Location:</h3>
+                    <p>{{ $item->department->name }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="text-lg font-semibold">Location:</h3>
                     <p>{{ $item->supplier->name }}</p>
                 </div>
 
+                <div class="mb-4">
+                    <h3 class="text-lg font-semibold">Location:</h3>
+                    <p>{{ $item->stock }}</p>
+                </div>
                 <div class="mt-4">
                     <a href="{{ route('items.index') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Back</a>
                 </div>

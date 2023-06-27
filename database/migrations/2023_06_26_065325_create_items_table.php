@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('itemcategory_id');
-            $table->string('supplier_id');
-            $table->string('location_id');
-            $table->string('department_id');
-            $table->integer('stock');
+            $table->string('code');
+            $table->string('name');
+            $table->unsignedBigInteger('itemcategory_id')->nullable()->default(null);
+            $table->unsignedBigInteger('supplier_id')->nullable()->default(null);
             $table->timestamps();
         });
     }

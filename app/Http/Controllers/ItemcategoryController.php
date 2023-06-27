@@ -31,7 +31,6 @@ class ItemcategoryController extends Controller
     public function store(StoreItemcategoryRequest $request)
     {
         $request->validate([
-            'code' => 'required',
             'name' => 'required',
             'slug' => 'required|unique:locations',
         ]);
@@ -62,7 +61,6 @@ class ItemcategoryController extends Controller
     public function update(UpdateItemcategoryRequest $request, Itemcategory $itemcategory)
     {
         $request->validate([
-            'code' => 'required',
             'name' => 'required',
             'slug' => 'required|unique:departments',
         ]);

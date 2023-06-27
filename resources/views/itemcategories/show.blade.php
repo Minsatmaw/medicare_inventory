@@ -8,10 +8,6 @@
             </div>
             <div class="p-6 bg-white rounded-md shadow-md">
                 <div class="mb-4">
-                    <h3 class="text-lg font-semibold">Code:</h3>
-                    <p>{{ $itemcategory->code }}</p>
-                </div>
-                <div class="mb-4">
                     <h3 class="text-lg font-semibold">Name:</h3>
                     <p>{{ $itemcategory->name }}</p>
                 </div>

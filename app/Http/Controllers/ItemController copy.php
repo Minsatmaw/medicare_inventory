@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Location;
 use App\Models\Supplier;
+use App\Models\Department;
 use App\Models\Itemcategory;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
@@ -15,7 +17,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::with('itemcategory', 'supplier')->get();
+        $items = Item::with('itemcategory', 'supplier', 'location', 'department')->get();
         return view('items.index', compact('items'));
 
     }
@@ -27,7 +29,9 @@ class ItemController extends Controller
     {
         $itemcategories = Itemcategory::all();
         $suppliers = Supplier::all();
-        return view('items.create', compact('itemcategories', 'suppliers'));
+        $locations = Location::all();
+        $departments = Department::all();
+        return view('items.create', compact('itemcategories', 'suppliers', 'locations', 'departments'));
     }
 
     /**
@@ -36,26 +40,14 @@ class ItemController extends Controller
     public function store(StoreItemRequest $request)
     {
         $request->validate([
-            'code' => 'required',
-            'name' => 'required',
-            'itemcategory_id' => 'nullable',
-            'supplier_id' => 'nullable',
+            'stock' => 'required',
+            'itemcategory_id' => 'required',
+            'supplier_id' => 'required',
+            'location_id' => 'required',
+            'department_id' => 'required',
         ]);
 
-        $data = [
-            'code' => $request->input('code'),
-            'name' => $request->input('name'),
-        ];
-
-        if ($request->filled('itemcategory_id')) {
-            $data['itemcategory_id'] = $request->input('itemcategory_id');
-        }
-
-        if ($request->filled('supplier_id')) {
-            $data['supplier_id'] = $request->input('supplier_id');
-        }
-
-        Item::create($data);
+        Item::create($request->all());
 
         return redirect()->route('items.index')
             ->with('success', 'Item created successfully.');
@@ -68,7 +60,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        $items = Item::with('itemcategory', 'supplier')->get();
+        $items = Item::with('itemcategory', 'supplier', 'location', 'department')->get();
 
         return view('items.show', compact('items'));
     }
@@ -80,8 +72,10 @@ class ItemController extends Controller
     {
         $suppliers = Supplier::all();
         $itemcategories = Itemcategory::all();
+        $locations = Location::all();
+        $departments = Department::all();
 
-        return view('items.edit', compact('item', 'itemcategories', 'suppliers'));
+        return view('items.edit', compact('item', 'itemcategories', 'locations', 'suppliers', 'departments'));
 
     }
 
@@ -91,31 +85,14 @@ class ItemController extends Controller
     public function update(UpdateItemRequest $request, Item $item)
     {
         $request->validate([
-            'code' => 'required',
-            'name' => 'required',
-            'itemcategory_id' => 'nullable',
-            'supplier_id' => 'nullable',
+            'stock' => 'required',
+            'itemcategory_id' => 'required',
+            'supplier_id' => 'required',
+            'location_id' => 'required',
+            'department_id' => 'required',
         ]);
 
-        $data = [
-            'code' => $request->input('code'),
-            'name' => $request->input('name'),
-        ];
-
-        if ($request->filled('itemcategory_id')) {
-            $data['itemcategory_id'] = $request->input('itemcategory_id');
-        } else {
-            $data['itemcategory_id'] = null;
-        }
-
-        if ($request->filled('supplier_id')) {
-            $data['supplier_id'] = $request->input('supplier_id');
-        } else {
-            $data['supplier_id'] = null;
-        }
-
-        $item = Item::findOrFail($item->id);
-        $item->update($data);
+        $item->update($request->all());
 
         return redirect()->route('items.index')
             ->with('success', 'Item updated successfully.');

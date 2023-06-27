@@ -11,7 +11,6 @@ class Itemcategory extends Model
     use HasFactory;
 
     protected $fillable = [
-        'code',
         'name',
         'slug',
     ];
