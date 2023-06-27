@@ -9,11 +9,11 @@
             <div class="p-6 bg-white rounded-md shadow-md">
                 <div class="mb-4">
                     <h3 class="text-lg font-semibold">Code:</h3>
-                    <p>{{ $item->$itemcategory->code }}</p>
+                    <p>{{$item->itemcategory->code}}</p>
                 </div>
                 <div class="mb-4">
                     <h3 class="text-lg font-semibold">Name:</h3>
-                    <p>{{ $item->$itemcategory->name }}</p>
+                    <p>{{ $item->itemcategory->name }}</p>
                 </div>
                 <div class="mb-4">
                     <h3 class="text-lg font-semibold">Location:</h3>
@@ -28,7 +28,7 @@
                     <p>{{ $item->supplier->name }}</p>
                 </div>
                 <div class="mt-4">
-                    <a href="{{ route('itemcategories.index') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Back</a>
+                    <a href="{{ route('items.index') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Back</a>
                 </div>
             </div>
         </div>

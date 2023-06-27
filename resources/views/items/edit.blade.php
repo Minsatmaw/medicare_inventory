@@ -6,14 +6,14 @@
             <div class="mb-6">
                 <h2 class="text-2xl font-bold">Edit Item Category</h2>
             </div>
-            <form action="{{ route('itemcategories.update', $itemcategory->id) }}" method="POST">
+            <form action="{{ route('items.update', $item->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="mb-4">
                     <label for="item_category_id" class="block mb-1 font-semibold text-gray-700">Item Code</label>
                     <select name="item_category_id" id="item_category_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
                         @foreach($itemcategories as $itemcategory)
-                            <option value="{{ $itemcategory->id }}" {{$itemcategory->id == $item->item_category_id ? 'selected' : '' }}>
+                            <option value="{{ $itemcategory->id }}" {{$itemcategory->id == $item->itemcategory_id ? 'selected' : '' }}>
                                 {{ $itemcategory->code }}
                             </option>
                         @endforeach
@@ -23,7 +23,7 @@
                     <label for="item_category_id" class="block mb-1 font-semibold text-gray-700">Item Name</label>
                     <select name="item_category_id" id="item_category_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
                         @foreach($itemcategories as $itemcategory)
-                            <option value="{{ $itemcategory->id }}" {{$itemcategory->id == $item->item_category_id ? 'selected' : '' }}>
+                            <option value="{{ $itemcategory->id }}" {{$itemcategory->id == $item->itemcategory_id ? 'selected' : '' }}>
                                 {{ $itemcategory->name }}
                             </option>
                         @endforeach
@@ -56,7 +56,7 @@
 
                 <div class="mt-4">
                     <button type="submit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Update</button>
-                    <a href="{{ route('itemcategories.index') }}" class="px-4 py-2 text-gray-700 border border-gray-300 rounded hover:bg-gray-100">Cancel</a>
+                    <a href="{{ route('items.index') }}" class="px-4 py-2 text-gray-700 border border-gray-300 rounded hover:bg-gray-100">Cancel</a>
                 </div>
             </form>
         </div>

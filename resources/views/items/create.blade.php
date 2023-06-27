@@ -6,7 +6,7 @@
             <div class="mb-6">
                 <h2 class="text-2xl font-bold">Create Item</h2>
             </div>
-            <form action="{{ route('itemcategories.store') }}" method="POST">
+            <form action="{{ route('items.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
                     <label for="item_category_id" class="block mb-1 font-semibold text-gray-700">Item Code</label>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="mt-5 ">
                     <button type="submit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Create</button>
-                    <a href="{{ route('itemcategories.index') }}" class="px-4 py-2 text-gray-700 border border-gray-300 rounded hover:bg-gray-100">Cancel</a>
+                    <a href="{{ route('items.index') }}" class="px-4 py-2 text-gray-700 border border-gray-300 rounded hover:bg-gray-100">Cancel</a>
                 </div>
             </form>
         </div>

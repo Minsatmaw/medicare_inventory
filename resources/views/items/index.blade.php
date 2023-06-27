@@ -25,10 +25,10 @@
                         @foreach ($items as $item)
                             <tr>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->itemcategory->code }}</td>
-                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->itemCategory->name }}</td>
+                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->itemcategory->name }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->location->name }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->stock }}</td>
-                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->supplier>name }}</td>
+                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->supplier->name }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">
                                     <a href="{{ route('items.show', $item->id) }}" class="text-blue-500 hover:underline">View</a>
                                     @can('item-create')

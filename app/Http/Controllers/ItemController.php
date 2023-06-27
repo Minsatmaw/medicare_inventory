@@ -37,14 +37,14 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        $validatedData= $request->validate([
+        $request->validate([
             'stock' => 'required',
-            'item_category_id' => 'required',
+            'itemcategory_id' => 'required',
             'supplier_id' => 'required',
             'location_id' => 'required',
         ]);
 
-        Item::create($validatedData);
+        Item::create($request->all());
 
         return redirect()->route('items.index')
             ->with('success', 'Item created successfully.');
@@ -57,6 +57,8 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
+        $items = Item::with('itemcategory', 'supplier', 'location')->get();
+
         return view('items.show', compact('item'));
     }
 
@@ -69,7 +71,7 @@ class ItemController extends Controller
         $itemcategories = Itemcategory::all();
         $locations = Location::all();
 
-        return view('items.edit', compact('items', 'itemcategories', 'locations', 'suppliers'));
+        return view('items.edit', compact('item', 'itemcategories', 'locations', 'suppliers'));
 
     }
 
@@ -80,7 +82,7 @@ class ItemController extends Controller
     {
         $request->validate([
             'stock' => 'required',
-            'item_category_id' => 'required',
+            'itemcategory_id' => 'required',
             'supplier_id' => 'required',
             'location_id' => 'required',
         ]);
