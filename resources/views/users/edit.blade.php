@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('main.master')
 
-@section('content')
+@section('body')
     <div class="py-4">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="mb-6">
@@ -29,7 +29,7 @@
                     <label class="block font-medium">Permissions</label>
                         @foreach ($permissions as $permission)
                             <div class="flex items-center mt-2">
-                                <input id="permission-{{ $permission->id }}" name="permissions[]" type="checkbox" value="{{ $permission->id }}" class="form-checkbox" 
+                                <input id="permission-{{ $permission->id }}" name="permissions[]" type="checkbox" value="{{ $permission->id }}" class="form-checkbox"
                                 @if (in_array($permission->id, $user_permissions))
                                   checked
                                 @endif

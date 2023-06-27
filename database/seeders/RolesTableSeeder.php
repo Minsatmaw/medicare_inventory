@@ -24,10 +24,6 @@ class RolesTableSeeder extends Seeder
           'description' => 'User role',
       ]);
 
-        Role::create([
-            'name' => 'Moderator',
-            'slug' => 'moderator',
-            'description' => 'Moderator role',
-        ]);
+        
     }
 }

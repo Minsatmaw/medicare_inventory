@@ -121,17 +121,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email|unique:users,email,' . $user->id,
-        //     'role' => 'required',
-        //     'permissions' => 'array',
 
-        // ]);
-
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->save();
 
         $validatedData = $request->validate([
             'name' => 'required',
@@ -150,8 +140,6 @@ class UserController extends Controller
         $role = Role::findOrFail($request->role);
         $user->roles()->sync([$role->id]);
 
-        // $permissions = $role->permissions()->pluck('id');
-        // $user->permissions()->attach($permissions);
 
         if ($request->has('permissions')) {
             $permissions = Permission::whereIn('id', $request->input('permissions'))->get();

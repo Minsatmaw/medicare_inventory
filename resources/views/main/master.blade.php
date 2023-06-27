@@ -16,6 +16,9 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="{{ asset('resources/css/app.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script> --}}
@@ -30,18 +33,36 @@
 <body>
 
 
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
-        @include('main.sidebar')
+    <div class="h-screen bg-gray-200 font-roboto">
+        <div x-data="{ sidebarOpen: false }"class="flex">
+            <!-- Mobile Navigation Toggle Button -->
+            <div class="static justify-center h-screen ">
+                @include('main.dropdown')
+            </div>
 
-        <div class="flex flex-col flex-1 overflow-hidden">
-            @include('main.header')
+            <!-- Sidebar -->
+            <div x-cloak :class="sidebarOpen ? 'block' : 'hidden'" @click.away="sidebarOpen = false" class="fixed inset-0 z-20 transition-opacity">
 
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-                <div class="container px-6 py-8 mx-auto">
-                    @yield('body')
-                </div>
-            </main>
+            </div>
+
+            <div x-cloak :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-white lg:translate-x-0 lg:static lg:inset-0">
+                @include('main.sidebar')
+            </div>
+
+            <div class="flex flex-col flex-1 overflow-hidden">
+                @include('main.header')
+
+                <main class="flex-1 overflow-y-auto bg-gray-200">
+                    <div class="container px-6 py-8 mx-auto">
+                        @yield('body')
+                    </div>
+                </main>
+            </div>
         </div>
+
+        <footer class="relative pt-8 bg-blueGray-200">
+            @include('main.footer')
+        </footer>
     </div>
 
     <script src="{{asset('resources/js/app.js')}}"></script>

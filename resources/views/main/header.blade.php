@@ -1,4 +1,4 @@
-<header class="flex items-center justify-between px-6 py-4 bg-white border-b-4 border-indigo-600">
+<header class="flex items-center justify-between h-20 px-6 py-4 bg-white shadow-md">
     <div class="flex items-center">
         {{-- <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +17,7 @@
         </div> --}}
     </div>
 
-    <div class="flex items-center">
+    <div class="flex items-center mr-10 lg:mr-0">
         {{-- <div x-data="{ notificationOpen: false }" class="relative">
             <button @click="notificationOpen = ! notificationOpen" class="flex mx-4 text-gray-600 focus:outline-none">
                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +71,7 @@
         </div> --}}
 
 
-        <div class="relative ml-3">
+        <div class="relative">
             <x-dropdown align="right" width="48">
                 <x-slot name="trigger">
                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
