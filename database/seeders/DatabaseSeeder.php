@@ -7,10 +7,14 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Permission;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Database\Seeders\LocationSeeder;
+use Database\Seeders\SupplierSeeder;
 use Illuminate\Support\Facades\Hash;
+use Database\Seeders\DepartmentSeeder;
 use Database\Seeders\PermissionSeeder;
 use Database\Seeders\RolesTableSeeder;
-use Illuminate\Support\Facades\DB;
+use Database\Seeders\ItemcategorySeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,7 +33,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PermissionSeeder::class,
             RolesTableSeeder::class,
-
+            DepartmentSeeder::class,
+            ItemcategorySeeder::class,
+            LocationSeeder::class,
+            SupplierSeeder::class,
+            PersonSeeder::class,
         ]);
 
         // User::create([
@@ -47,7 +55,7 @@ class DatabaseSeeder extends Seeder
         //     'id' => '1', 'name' => 'User List', 'slug' => 'user-list', 'description' => 'Can view the list of users',
         //     'id' => '2', 'name' => 'Role List', 'slug' => 'role-list', 'description' =>'Can view the list of roles',
         // ]);
-        
+
         // 1 Admin
         $user = new User();
         $user->name = 'Admin';

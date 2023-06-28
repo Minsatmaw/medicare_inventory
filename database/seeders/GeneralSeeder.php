@@ -12,6 +12,6 @@ class GeneralSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+       //
     }
 }

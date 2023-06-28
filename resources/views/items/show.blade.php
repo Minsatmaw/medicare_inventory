@@ -13,13 +13,18 @@
                 </div>
 
                 <div class="mb-4">
+                    <h3 class="text-lg font-semibold">Item Name:</h3>
+                    <p>{{$item->name}}</p>
+                </div>
+
+                <div class="mb-4">
                     <h3 class="text-lg font-semibold">Category:</h3>
                     <p>{{ $item->itemcategory->name }}</p>
                 </div>
 
                 <div class="mb-4">
-                    <h3 class="text-lg font-semibold">Item Name:</h3>
-                    <p>{{$item->name}}</p>
+                    <h3 class="text-lg font-semibold">Location:</h3>
+                    <p>{{$item->location->name}}</p>
                 </div>
 
                 <div class="mb-4">

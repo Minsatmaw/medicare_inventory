@@ -2,20 +2,20 @@
 
 namespace Database\Seeders;
 
-use App\Models\Itemcategory;
-use Illuminate\Database\Seeder;
+use App\Models\Person;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
-class ItemcategorySeeder extends Seeder
+class PersonSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Itemcategory::create([
-            'name' => 'Monitor',
-            'slug' => 'monitor',
+        Person::create([
+            'name' => 'Min Sat Maw',
+            'slug' => 'MSM',
         ]);
     }
 }

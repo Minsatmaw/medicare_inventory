@@ -5,59 +5,98 @@
             <h1 class="text-3xl text-indigo-500 uppercase">Logo</h1>
       </div>
       <ul class="flex flex-col py-4">
-        <li class="{{ Request::is('dashboard*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="/dashboard">
-                <span class="mx-3">Dashboard</span>
-            </a>
-        </li>
+            <li class="{{ Request::is('dashboard*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="/dashboard">
+                    <span class="mx-3">Dashboard</span>
+                </a>
+            </li>
 
-        <li class="{{ Request::is('items*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('items.index')}}">
-                <span class="mx-3">Item</span>
-            </a>
-        </li>
+            <li x-data="{ isOpen: false }">
+                <!-- Dropdown Group -->
+                <div>
+                <button @click="isOpen = !isOpen" class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
+                    <span class="mx-3">User Control</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                    </svg>
+                </button>
 
-        <li class="{{ Request::is('users*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('users.index')}}">
-                <span class="mx-3">User List</span>
-            </a>
-        </li>
+                <!-- Dropdown Items -->
+                <ul x-show="isOpen" class="pl-4 pr-2 mt-2 space-y-1">
+                    <li class="{{ Request::is('users*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                        <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('users.index')}}">
+                            <span class="mx-3">User List</span>
+                        </a>
+                    </li>
 
-        <li class="{{ Request::is('roles*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('roles.index')}}">
-                <span class="mx-3">Role List</span>
-            </a>
-        </li>
+                    <li class="{{ Request::is('roles*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                        <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('roles.index')}}">
+                            <span class="mx-3">Role List</span>
+                        </a>
+                    </li>
 
-        <li class="{{ Request::is('permissions*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('permissions.index')}}">
-                <span class="mx-3">Permissions</span>
-            </a>
-        </li>
+                    <li class="{{ Request::is('permissions*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                        <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('permissions.index')}}">
+                            <span class="mx-3">Permissions</span>
+                        </a>
+                    </li>
 
-        <li class="{{ Request::is('departments*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('departments.index')}}">
-                <span class="mx-3">Departments</span>
-            </a>
-        </li>
+                    <li class="{{ Request::is('departments*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                        <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('departments.index')}}">
+                            <span class="mx-3">Departments</span>
+                        </a>
+                    </li>
 
-        <li class="{{ Request::is('locations*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('locations.index')}}">
-                <span class="mx-3">Locations</span>
-            </a>
-        </li>
+                </ul>
+                </div>
+            </li>
 
-        <li class="{{ Request::is('itemcategories*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('itemcategories.index')}}">
-                <span class="mx-3">Item Category</span>
-            </a>
-        </li>
 
-        <li class="{{ Request::is('suppliers*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('suppliers.index')}}">
-                <span class="mx-3">Supplier</span>
-            </a>
-        </li>
+            <li x-data="{ isOpen: false }">
+                <!-- Dropdown Group -->
+                <div>
+                <button @click="isOpen = !isOpen" class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
+                    <span class="mx-3">Item Management</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                    </svg>
+                </button>
+
+                <!-- Dropdown Items -->
+                <ul x-show="isOpen" class="pl-4 pr-2 mt-2 space-y-1">
+                    <li class="{{ Request::is('items*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                        <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('items.index')}}">
+                            <span class="mx-3">Item</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('itemcategories*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                        <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('itemcategories.index')}}">
+                            <span class="mx-3">Item Category</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('locations*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                        <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('locations.index')}}">
+                            <span class="mx-3">Locations</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('suppliers*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                        <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('suppliers.index')}}">
+                            <span class="mx-3">Supplier</span>
+                        </a>
+                    </li>
+
+                </ul>
+                </div>
+            </li>
+
+            <li class="{{ Request::is('people*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('people.index')}}">
+                    <span class="mx-3">Operator</span>
+                </a>
+            </li>
       </ul>
     </div>
 </div>

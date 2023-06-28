@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Location;
 use App\Models\Supplier;
 use App\Models\Itemcategory;
 use App\Http\Requests\StoreItemRequest;
@@ -15,7 +16,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::with('itemcategory', 'supplier')->get();
+        $items = Item::with('itemcategory', 'supplier', 'location')->get();
         return view('items.index', compact('items'));
 
     }
@@ -27,7 +28,8 @@ class ItemController extends Controller
     {
         $itemcategories = Itemcategory::all();
         $suppliers = Supplier::all();
-        return view('items.create', compact('itemcategories', 'suppliers'));
+        $locations = Location::all();
+        return view('items.create', compact('itemcategories', 'suppliers', 'locations'));
     }
 
     /**
@@ -40,11 +42,13 @@ class ItemController extends Controller
             'name' => 'required',
             'itemcategory_id' => 'nullable',
             'supplier_id' => 'nullable',
+            'location_id' => 'required',
         ]);
 
         $data = [
             'code' => $request->input('code'),
             'name' => $request->input('name'),
+            'location_id' => $request->input('location_id'),
         ];
 
         if ($request->filled('itemcategory_id')) {
@@ -68,7 +72,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        $items = Item::with('itemcategory', 'supplier')->get();
+        $items = Item::with('itemcategory', 'supplier', 'location')->get();
 
         return view('items.show', compact('items'));
     }
@@ -80,8 +84,9 @@ class ItemController extends Controller
     {
         $suppliers = Supplier::all();
         $itemcategories = Itemcategory::all();
+        $locations = Location::all();
 
-        return view('items.edit', compact('item', 'itemcategories', 'suppliers'));
+        return view('items.edit', compact('item', 'itemcategories', 'suppliers', 'locations'));
 
     }
 
@@ -95,11 +100,13 @@ class ItemController extends Controller
             'name' => 'required',
             'itemcategory_id' => 'nullable',
             'supplier_id' => 'nullable',
+            'location_id' => 'required',
         ]);
 
         $data = [
             'code' => $request->input('code'),
             'name' => $request->input('name'),
+            'location_id' => $request->input('location_id'),
         ];
 
         if ($request->filled('itemcategory_id')) {

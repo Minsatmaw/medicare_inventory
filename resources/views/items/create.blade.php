@@ -15,6 +15,11 @@
                 </div>
 
                 <div class="mb-4">
+                    <label for="name" class="block mb-1 font-semibold text-gray-700">Item Name</label>
+                    <input type="text" name="name" id="name" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
+                </div>
+
+                <div class="mb-4">
                     <label for="itemcategory_id" class="block mb-1 font-semibold text-gray-700">Category</label>
                     <select name="itemcategory_id" id="itemcategory_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
                         <option value="">Choose a Item Category</option>
@@ -25,8 +30,12 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="name" class="block mb-1 font-semibold text-gray-700">Item Name</label>
-                    <input type="text" name="name" id="name" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
+                    <label for="location_id" class="block mb-1 font-semibold text-gray-700">Location</label>
+                    <select name="location_id" id="location_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                        @foreach($locations as $location)
+                            <option value="{{ $location->id }}">{{ $location->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="mb-4">

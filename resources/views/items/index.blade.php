@@ -14,8 +14,9 @@
                     <thead>
                         <tr>
                             <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Code</th>
-                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Category</th>
                             <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Name</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Category</th>
+                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Location</th>
                             <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Supplier</th>
                             <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Actions</th>
                         </tr>
@@ -24,6 +25,9 @@
                         @foreach ($items as $item)
                             <tr>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->code }}</td>
+
+                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->name }}</td>
+
                                 @if ($item->itemcategory_id)
                                     <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->itemcategory->name }}</td>
                                 @else
@@ -31,7 +35,10 @@
                                         <span class="inline-block px-2 py-1 text-xs font-semibold text-orange-600 bg-orange-200 rounded-full">No Item Category assigned</span>
                                     </td>
                                 @endif
-                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->name }}</td>
+
+                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->location->name }}</td>
+
+
                                 @if ($item->supplier_id)
                                     <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->supplier->name }}</td>
                                 @else
@@ -39,6 +46,7 @@
                                         <span class="inline-block px-2 py-1 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">No Supplier assigned</span>
                                     </td>
                                 @endif
+
                                 <td class="px-4 py-2 text-center border-b border-gray-200">
                                     <a href="{{ route('items.show', $item->id) }}" class="text-blue-500 hover:underline">View</a>
                                     @can('item-create')
