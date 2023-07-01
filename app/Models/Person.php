@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ItRecord;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Person extends Model
 {
@@ -13,4 +14,8 @@ class Person extends Model
         'name',
         'slug'
     ];
+
+    public function items(){
+        return $this->hasMany(ItRecord::class);
+    }
 }

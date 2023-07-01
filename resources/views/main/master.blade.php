@@ -53,7 +53,7 @@
                 @include('main.header')
 
                 <main class="flex-1 overflow-y-auto bg-gray-200">
-                    <div class="container px-6 py-8 mx-auto">
+                    <div class="container px-2 py-8 mx-auto">
                         @yield('body')
                     </div>
                 </main>
