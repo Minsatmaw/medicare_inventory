@@ -10,6 +10,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\ItStockController;
 use App\Http\Controllers\ItRecordController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SupplierController;
@@ -56,7 +57,8 @@ Route::middleware([
     Route::resource('items', ItemController::class);
     Route::resource('people', PersonController::class);
 
-    Route::resource('it_records', ItRecordController::class)->only(['index', 'create', 'store']);
+    // Route::resource('it_records', ItRecordController::class)->only(['index', 'create', 'store']);
+    Route::resource('it_stocks', ItStockController::class)->only(['index', 'create', 'store']);
 
     // Route::middleware(['auth', 'can:view-users'])->resource('users', UserController::class);
     // Route::middleware(['auth', 'can:view-roles'])->resource('roles', RoleController::class);

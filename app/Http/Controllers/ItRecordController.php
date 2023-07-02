@@ -14,9 +14,7 @@ class ItRecordController extends Controller
      */
     public function index()
     {
-        $itRecords = ItRecord::with(['person', 'item'])->get();
-
-        return view('it_records.index', compact('itRecords'));
+        
     }
 
     /**
@@ -24,12 +22,7 @@ class ItRecordController extends Controller
      */
     public function create()
     {
-        // Fetch necessary data for dropdowns
-        $people = Person::all();
-        $items = Item::all();
 
-
-        return view('it_records.create', compact('people', 'items'));
 
     }
 
@@ -38,32 +31,7 @@ class ItRecordController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'person_id' => 'required',
-            'item_id' => 'required',
-            'stock' => 'required|numeric',
-            'is_in' => 'required|boolean',
-        ]);
 
-        $itRecord = ItRecord::where('item_id', $request->item_id)->first();
-
-        if ($itRecord) {
-            if ($request->is_in) {
-                $itRecord->stock += $request->stock;
-            } else {
-                $itRecord->stock -= $request->stock;
-
-                if ($itRecord->stock < 0) {
-                    return redirect()->back()->withErrors('Insufficient stock.');
-                }
-            }
-
-            $itRecord->save();
-        } else {
-            ItRecord::create($request->all());
-        }
-
-        return redirect()->route('it_records.index')->with('success', 'IT Item Record created successfully.');
     }
 
     /**
