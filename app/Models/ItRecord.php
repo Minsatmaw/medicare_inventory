@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItRecord extends Model
 {
-    use HasFactory;
-    protected $fillable = [
-        'person_id',
-        'item_id',
-        'stock',
-        'is_in',
-    ];
-
+  use HasFactory;
+  protected $fillable = [
+    'person_id',
+    'item_id',
+    'stock',
+    'status',
+  ];
 }
