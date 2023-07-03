@@ -52,7 +52,7 @@
             <div class="flex flex-col flex-1 overflow-hidden">
                 @include('main.header')
 
-                <main class="flex-1 overflow-y-auto bg-gray-200">
+                <main class="flex-1 overflow-y-auto bg-cyan-500 ">
                     <div class="container px-2 py-8 mx-auto">
                         @yield('body')
                     </div>

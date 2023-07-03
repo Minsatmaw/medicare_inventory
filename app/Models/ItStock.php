@@ -15,6 +15,7 @@ class ItStock extends Model
         'item_id',
         'stock',
         'is_in',
+        'description',
     ];
 
     public function person()

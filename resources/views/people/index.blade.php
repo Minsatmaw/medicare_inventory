@@ -4,7 +4,7 @@
     <div class="py-4">
         <div class="inline-block min-w-full overflow-hidden align-middle">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold">Operator List</h2>
+                <h2 class="text-2xl font-bold text-white">Operator List</h2>
                 @can('person-create')
                     <a href="{{ route('people.create') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Create Operator</a>
                 @endcan

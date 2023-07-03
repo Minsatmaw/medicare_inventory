@@ -13,5 +13,6 @@ class ItRecord extends Model
     'item_id',
     'stock',
     'status',
+    'description',
   ];
 }

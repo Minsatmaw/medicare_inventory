@@ -27,9 +27,10 @@ class ItStockController extends Controller
   {
     $people = Person::all();
     $items = Item::all();
+    $itStocks = ItStock::all();
 
 
-    return view('it_stocks.create', compact('people', 'items'));
+    return view('it_stocks.create', compact('people', 'items', 'itStocks'));
   }
 
   /**
@@ -42,6 +43,7 @@ class ItStockController extends Controller
       'item_id' => 'required',
       'stock' => 'required|numeric',
       'is_in' => 'required|boolean',
+      'description' => 'required',
     ]);
 
     $itStock = ItStock::where('item_id', $request->item_id)->first();
@@ -53,7 +55,7 @@ class ItStockController extends Controller
         $itStock->stock -= $request->stock;
 
         if ($itStock->stock < 0) {
-          return redirect()->back()->withErrors('Insufficient stock.');
+            return redirect()->back()->with('error', 'Insufficient stock.');
         }
       }
       $itStock->save();
@@ -66,6 +68,7 @@ class ItStockController extends Controller
       'item_id' => $request->item_id,
       'stock' => $request->stock,
       'status' => $request->is_in ? "IN" : "OUT",
+      'description' => $request->description,
     ]);
     return redirect()->route('it_stocks.index')->with('success', 'IT Item Stock created successfully.');
   }
