@@ -14,7 +14,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <link href="{{ asset('resources/css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('resources/css/app.css') }}" rel="stylesheet"> --}}
 
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
@@ -65,7 +65,7 @@
         </footer>
     </div>
 
-    <script src="{{asset('resources/js/app.js')}}"></script>
+    {{-- <script src="{{asset('resources/js/app.js')}}"></script> --}}
 
 </body>
 </html>
