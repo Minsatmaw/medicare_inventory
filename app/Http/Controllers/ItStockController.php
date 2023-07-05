@@ -55,11 +55,14 @@ class ItStockController extends Controller
         $itStock->stock -= $request->stock;
 
         if ($itStock->stock < 0) {
-            return redirect()->back()->with('error', 'Insufficient stock.');
+          return redirect()->back()->with('error', 'Insufficient stock.');
         }
       }
       $itStock->save();
     } else {
+      if ($request->is_in == 0) {
+        return redirect()->back()->with('error', 'Insufficient stock.');
+      }
       ItStock::create($request->all());
     }
 
