@@ -3,41 +3,56 @@
 namespace App\Providers;
 
 use App\Actions\Jetstream\DeleteUser;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Fortify\Fortify;
 use Laravel\Jetstream\Jetstream;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
+  /**
+   * Register any application services.
+   */
+  public function register(): void
+  {
+    //
+  }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        $this->configurePermissions();
+  /**
+   * Bootstrap any application services.
+   */
+  public function boot(): void
+  {
+    $this->configurePermissions();
 
-        Jetstream::deleteUsersUsing(DeleteUser::class);
-    }
+    Jetstream::deleteUsersUsing(DeleteUser::class);
 
-    /**
-     * Configure the permissions that are available within the application.
-     */
-    protected function configurePermissions(): void
-    {
-        Jetstream::defaultApiTokenPermissions(['read']);
+    Fortify::authenticateUsing(function (Request $request) {
+      $user = User::where('name', $request->name)->first();
 
-        Jetstream::permissions([
-            'create',
-            'read',
-            'update',
-            'delete',
-        ]);
-    }
+      if (
+        $user &&
+        Hash::check($request->password, $user->password)
+      ) {
+        return $user;
+      }
+    });
+  }
+
+  /**
+   * Configure the permissions that are available within the application.
+   */
+  protected function configurePermissions(): void
+  {
+    Jetstream::defaultApiTokenPermissions(['read']);
+
+    Jetstream::permissions([
+      'create',
+      'read',
+      'update',
+      'delete',
+    ]);
+  }
 }
