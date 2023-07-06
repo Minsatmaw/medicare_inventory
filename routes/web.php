@@ -40,9 +40,6 @@ Route::get('/', function () {
 //     return view('main.userlist');
 // });
 
-Route::get('/it_records', function () {
-    return view('livewire.it-records');
-});
 
 Route::middleware([
     'auth:sanctum',
@@ -66,14 +63,13 @@ Route::middleware([
     // Route::resource('it_records', ItRecordController::class)->only(['index', 'create', 'store']);
     Route::resource('it_stocks', ItStockController::class)->only(['index', 'create', 'store']);
 
-    // Route::middleware(['auth', 'can:view-users'])->resource('users', UserController::class);
-    // Route::middleware(['auth', 'can:view-roles'])->resource('roles', RoleController::class);
-    // Route::middleware(['auth', 'can:view-permissions'])->resource('permissions', PermissionController::class);
+   //livewire routes
+   Route::get('/it_records', function () {
+    return view('livewire.it-records');
+})->name('livewire.it-records');
 
 
 
-    // User Profile Routes
-    // Route::put('profile', UpdateProfileInformationForm::class);
 
     // Route::get('/test', function (Request $request) {
 

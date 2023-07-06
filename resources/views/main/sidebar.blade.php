@@ -100,6 +100,27 @@
                 </div>
             </li>
 
+            <li x-data="{ isOpen: false }">
+                <!-- Dropdown Group -->
+                <div>
+                <button @click="isOpen = !isOpen" class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
+                    <span class="mx-3">Item Records</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                    </svg>
+                </button>
+
+                <!-- Dropdown Items -->
+                <ul x-show="isOpen" class="pl-4 pr-2 mt-2 space-y-1">
+                    <li class="{{ Request::is('it_records*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                        <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('livewire.it-records')}}">
+                            <span class="mx-3">IT Item Records</span>
+                        </a>
+                    </li>
+                </ul>
+                </div>
+            </li>
+
             <li class="{{ Request::is('people*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
                 <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('people.index')}}">
                     <span class="mx-3">Operator</span>

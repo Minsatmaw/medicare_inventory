@@ -71,13 +71,13 @@
         </footer>
     </div>
 
-<<<<<<< Updated upstream
+
     {{-- <script src="{{asset('resources/js/app.js')}}"></script> --}}
-=======
+
     @livewireScripts
 
     {{-- <script src="{{asset('resources/js/app.js')}}"></script> --}}
->>>>>>> Stashed changes
+
 
 </body>
 </html>

@@ -60,17 +60,14 @@ class ItStockController extends Controller
       }
       $itStock->save();
     } else {
-<<<<<<< Updated upstream
+
       if ($request->is_in == 0) {
         return redirect()->back()->with('error', 'Insufficient stock.');
       }
-=======
 
-      if ($request->is_in == 0) {
-        return redirect()->back()->with('error', 'Insufficient stock.');
-        }
 
->>>>>>> Stashed changes
+
+
       ItStock::create($request->all());
     }
 
