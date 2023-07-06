@@ -15,4 +15,16 @@ class ItRecord extends Model
     'status',
     'description',
   ];
+
+
+  public function person()
+{
+    return $this->belongsTo(Person::class);
+}
+
+public function item()
+{
+    return $this->belongsTo(Item::class);
+}
+
 }

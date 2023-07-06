@@ -13,12 +13,12 @@
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Code</th>
-                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Name</th>
-                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Category</th>
-                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Location</th>
-                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Supplier</th>
-                            <th class="px-4 py-2 uppercase border-b border-gray-200 bg-gray-50">Actions</th>
+                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Code</th>
+                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Name</th>
+                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Category</th>
+                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Location</th>
+                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Supplier</th>
+                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white ">

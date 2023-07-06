@@ -5,11 +5,19 @@
             <h1 class="text-3xl text-indigo-500 uppercase">Logo</h1>
       </div>
       <ul class="flex flex-col py-4">
-            <li class="{{ Request::is('dashboard*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+            {{-- <li class="{{ Request::is('dashboard*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
                 <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="/dashboard">
                     <span class="mx-3">Dashboard</span>
                 </a>
+            </li> --}}
+
+            <li class="{{ Request::is('it_stocks*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('it_stocks.index')}}">
+                    <span class="mx-3">Item Stock List</span>
+                </a>
             </li>
+
+
 
             <li x-data="{ isOpen: false }">
                 <!-- Dropdown Group -->
@@ -99,10 +107,12 @@
             </li>
 
             <li class="{{ Request::is('it_stocks*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-                <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('it_stocks.index')}}">
-                    <span class="mx-3">IT Item Stock List</span>
+                <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('it_stocks.create')}}">
+                    <span class="mx-3">Item IN/Out Form</span>
                 </a>
             </li>
+
+
       </ul>
     </div>
 </div>

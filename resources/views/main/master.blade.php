@@ -18,10 +18,11 @@
 
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
+    @livewireStyles
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script> --}}
 
 
 
@@ -52,8 +53,13 @@
             <div class="flex flex-col flex-1 overflow-hidden">
                 @include('main.header')
 
-                <main class="flex-1 overflow-y-auto bg-cyan-500 ">
-                    <div class="container px-2 py-8 mx-auto">
+                <main class="flex-1 overflow-y-auto bg-gray-50 ">
+                    <div class="container px-2 py-2 mx-auto">
+                        {{-- Conditional rendering for the Livewire component --}}
+                        @if (isset($showItRecords) && $showItRecords)
+                            @livewire('it-records')
+                        @endif
+
                         @yield('body')
                     </div>
                 </main>
@@ -65,7 +71,13 @@
         </footer>
     </div>
 
+<<<<<<< Updated upstream
     {{-- <script src="{{asset('resources/js/app.js')}}"></script> --}}
+=======
+    @livewireScripts
+
+    {{-- <script src="{{asset('resources/js/app.js')}}"></script> --}}
+>>>>>>> Stashed changes
 
 </body>
 </html>

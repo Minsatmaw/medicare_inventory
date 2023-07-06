@@ -3,7 +3,7 @@
 @section('body')
 <div class="py-4">
 
-    <div class="mx-auto text-white max-w-7xl sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="mb-6">
             <h2 class="text-2xl font-bold">Create IT Item Stock </h2>
         </div>

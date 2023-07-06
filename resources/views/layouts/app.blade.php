@@ -11,11 +11,14 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         {{-- <link rel="stylesheet" href="{{asset('build/assets/app-9c9c28d6.css')}}"> --}}
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+        <link href="{{ asset('resources/css/app.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
+
 
 
 
@@ -33,27 +36,30 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+        <div class="">
+            {{-- @include('main.master') --}}
 
-            <!-- Page Heading -->
+            {{-- <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
                     <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
-            @endif
+            @endif --}}
 
             <!-- Page Content -->
             <main>
-                @yield('content')
-                {{-- {{ $slot }} --}}
+                {{ $slot }}
             </main>
         </div>
 
         @stack('modals')
 
         @livewireScripts
+
+        <script src="{{asset('resources/js/app.js')}}"></script>
+
+
     </body>
 </html>

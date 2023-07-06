@@ -17,6 +17,8 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ItemcategoryController;
+use App\Http\Livewire\ItRecords;
+use App\Models\ItRecord;
 use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
 
 /*
@@ -31,21 +33,25 @@ use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 // Route::get('/userlist', function () {
 //     return view('main.userlist');
 // });
 
+Route::get('/it_records', function () {
+    return view('livewire.it-records');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('main.dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('main.dashboard');
+    // })->name('dashboard');
 
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
