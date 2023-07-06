@@ -33,7 +33,7 @@ use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+  return view('auth/login');
 });
 
 // Route::get('/userlist', function () {
@@ -42,45 +42,43 @@ Route::get('/', function () {
 
 
 Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
+  'auth:sanctum',
+  config('jetstream.auth_session'),
+  'verified'
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('main.dashboard');
-    // })->name('dashboard');
+  // Route::get('/dashboard', function () {
+  //     return view('main.dashboard');
+  // })->name('dashboard');
 
-    Route::resource('users', UserController::class);
-    Route::resource('roles', RoleController::class);
-    Route::resource('permissions', PermissionController::class);
-    Route::resource('departments', DepartmentController::class);
-    Route::resource('locations', LocationController::class);
-    Route::resource('itemcategories', ItemcategoryController::class);
-    Route::resource('suppliers', SupplierController::class);
-    Route::resource('items', ItemController::class);
-    Route::resource('people', PersonController::class);
+  Route::resource('users', UserController::class);
+  Route::resource('roles', RoleController::class);
+  Route::resource('permissions', PermissionController::class);
+  Route::resource('departments', DepartmentController::class);
+  Route::resource('locations', LocationController::class);
+  Route::resource('itemcategories', ItemcategoryController::class);
+  Route::resource('suppliers', SupplierController::class);
+  Route::resource('items', ItemController::class);
+  Route::resource('people', PersonController::class);
+  Route::resource('/profile/', UpdateProfileInformationForm::class);
 
-    // Route::resource('it_records', ItRecordController::class)->only(['index', 'create', 'store']);
-    Route::resource('it_stocks', ItStockController::class)->only(['index', 'create', 'store']);
+  // Route::resource('it_records', ItRecordController::class)->only(['index', 'create', 'store']);
+  Route::resource('it_stocks', ItStockController::class)->only(['index', 'create', 'store']);
 
-   //livewire routes
-   Route::get('/it_records', function () {
+  //livewire routes
+  Route::get('/it_records', function () {
     return view('livewire.it-records');
-})->name('livewire.it-records');
+  })->name('livewire.it-records');
 
 
 
 
-    // Route::get('/test', function (Request $request) {
+  // Route::get('/test', function (Request $request) {
 
-    //    $item = Item::find(1);
-    //    return $item->itemcategory->name;
+  //    $item = Item::find(1);
+  //    return $item->itemcategory->name;
 
-    // });
+  // });
 
 
 
 });
-
-
-
