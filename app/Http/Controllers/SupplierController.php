@@ -13,7 +13,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::all();
+        $suppliers = Supplier::paginate(10);
         return view('suppliers.index', compact('suppliers'));
     }
 
@@ -31,8 +31,8 @@ class SupplierController extends Controller
     public function store(StoreSupplierRequest $request)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:locations',
+            'name' => 'required|unique:suppliers,name',
+            'slug' => 'required|unique:suppliers,slug',
         ]);
 
         Supplier::create($request->all());
@@ -61,8 +61,8 @@ class SupplierController extends Controller
     public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:departments',
+            'name' => 'required|unique:suppliers,name,' . $supplier->id,
+            'slug' => 'required|unique:suppliers,slug,' . $supplier->id,
         ]);
 
         $supplier->update($request->all());

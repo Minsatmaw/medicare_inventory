@@ -12,12 +12,18 @@
 
                 <div class="mb-4">
                     <label for="code" class="block mb-1 font-semibold text-gray-700">Item Code</label>
-                    <input type="text" name="code" id="code" value="{{$item->code}}" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
+                    <input type="text" name="code" id="code" value="{{$item->code}}" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 @error('code') border-red-700 is-invalid  @enderror" required>
+                    @error('code')
+                        <div class="text-red-600 invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <label for="name" class="block mb-1 font-semibold text-gray-700">Item Name</label>
-                    <input type="text" name="name" id="name" value="{{$item->name}}" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
+                    <input type="text" name="name" id="name" value="{{$item->name}}" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 @error('name') border-red-700 is-invalid  @enderror" required>
+                    @error('name')
+                        <div class="text-red-600 invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-4">

@@ -58,22 +58,16 @@ class DatabaseSeeder extends Seeder
 
         // 1 Admin
         $user = new User();
-        $user->name = 'Admin';
-        $user->email = 'admin@gmail.com';
-        $user->password = Hash::make('password');
+        $user->name = 'Super Admin';
+        $user->email = 'superadmin@gmail.com';
+        $user->password = Hash::make('$3cur3p@ssw0rd');
         $user->save();
 
-        // And 1 User
-        $user = new User();
-        $user->name = 'User';
-        $user->email = 'user@gmail.com';
-        $user->password = Hash::make('password');
-        $user->save();
+
 
 
         $role_user = [
           ['role_id'=>1, 'user_id'=>1],
-          ['role_id'=>2, 'user_id'=>2],
       ];
       DB::table('role_user')->insert($role_user);
 
@@ -88,8 +82,7 @@ class DatabaseSeeder extends Seeder
           ['user_id'=>1, 'permission_id'=>7],
           ['user_id'=>1, 'permission_id'=>8],
 
-          // For User
-          ['user_id'=>2, 'permission_id'=>1],
+
       ];
       DB::table('permission_user')->insert($permission_user);
 
@@ -104,8 +97,7 @@ class DatabaseSeeder extends Seeder
           ['permission_id'=>7, 'role_id'=>1],
           ['permission_id'=>8, 'role_id'=>1],
 
-          // User
-          ['permission_id'=>1, 'role_id'=>2],
+
       ];
       DB::table('permission_role')->insert($permission_role);
     }

@@ -13,7 +13,7 @@ class ItemcategoryController extends Controller
      */
     public function index()
     {
-        $itemcategories = Itemcategory::all();
+        $itemcategories = Itemcategory::paginate(10);
         return view('itemcategories.index', compact('itemcategories'));
     }
 
@@ -31,8 +31,8 @@ class ItemcategoryController extends Controller
     public function store(StoreItemcategoryRequest $request)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:locations',
+            'name' => 'required|unique:itemcategories,name',
+            'slug' => 'required|unique:itemcategories,slug',
         ]);
 
         Itemcategory::create($request->all());
@@ -61,8 +61,8 @@ class ItemcategoryController extends Controller
     public function update(UpdateItemcategoryRequest $request, Itemcategory $itemcategory)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:departments',
+            'name' => 'required|unique:itemcategories,name,' . $itemcategory->id,
+            'slug' => 'required|unique:itemcategories,slug,' . $itemcategory->id,
         ]);
 
         $itemcategory->update($request->all());

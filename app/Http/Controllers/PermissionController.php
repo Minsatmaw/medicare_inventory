@@ -12,7 +12,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::paginate(10);
         return view('permissions.index', compact('permissions'));
     }
 
@@ -30,8 +30,8 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:permissions',
+            'name' => 'required|unique:permissions,name',
+            'slug' => 'required|unique:permissions,slug',
             'description' => 'nullable',
         ]);
 
@@ -62,7 +62,7 @@ class PermissionController extends Controller
     public function update(Request $request, Permission $permission)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:permissions,name' . $permission->id,
             // 'slug' => 'required|unique:permissions,slug' . $permission->id,
             'slug' => 'required|unique:permissions,slug,' . $permission->id,
 

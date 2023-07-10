@@ -13,7 +13,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $people = Person::all();
+        $people = Person::paginate(10);
         return view('people.index', compact('people'));
     }
 
@@ -31,8 +31,8 @@ class PersonController extends Controller
     public function store(StorePersonRequest $request)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:locations',
+            'name' => 'required|unique:people,name',
+            'slug' => 'required|unique:people,slug',
         ]);
 
         Person::create($request->all());
@@ -61,8 +61,8 @@ class PersonController extends Controller
     public function update(UpdatePersonRequest $request, Person $person)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:departments',
+            'name' => 'required|unique:people,name,' . $person->id,
+            'slug' => 'required|unique:people,slug'. $person->id,
         ]);
 
         $person->update($request->all());

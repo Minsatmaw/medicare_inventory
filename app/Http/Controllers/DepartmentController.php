@@ -13,7 +13,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::all();
+        $departments = Department::paginate(10);
         return view('departments.index', compact('departments'));
     }
 
@@ -31,8 +31,8 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:departments',
+            'name' => 'required|unique:departments,name',
+            'slug' => 'required|unique:departments,slug',
         ]);
 
         Department::create($request->all());
@@ -62,8 +62,8 @@ class DepartmentController extends Controller
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:departments',
+            'name' => 'required|unique:departments,name,' . $department->id,
+            'slug' => 'required|unique:departments,slug,' . $department->id,
         ]);
 
         $department->update($request->all());

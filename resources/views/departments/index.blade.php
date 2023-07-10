@@ -2,6 +2,13 @@
 
 @section('body')
     <div class="py-4">
+
+        @if(session('success'))
+            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" class="px-3 py-3 mt-2 text-green-500 bg-green-300 border">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="inline-block min-w-full overflow-hidden align-middle">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold">Department List</h2>
@@ -44,5 +51,10 @@
                 <p>No departments found.</p>
             @endif
         </div>
+
+        <div class="mt-4">
+            {{ $departments->links() }}
+        </div>
+
     </div>
 @endsection

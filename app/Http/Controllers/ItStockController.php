@@ -15,7 +15,7 @@ class ItStockController extends Controller
    */
   public function index()
   {
-    $itStocks = ItStock::with(['person', 'item'])->get();
+    $itStocks = ItStock::with(['person', 'item'])->paginate(10);
 
     return view('it_stocks.index', compact('itStocks'));
   }
@@ -43,7 +43,7 @@ class ItStockController extends Controller
       'item_id' => 'required',
       'stock' => 'required|numeric',
       'is_in' => 'required|boolean',
-      'description' => 'required',
+      'description' => 'nullable',
     ]);
 
     $itStock = ItStock::where('item_id', $request->item_id)->first();

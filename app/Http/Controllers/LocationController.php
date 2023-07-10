@@ -13,7 +13,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
+        $locations = Location::paginate(10);
         return view('locations.index', compact('locations'));
     }
 
@@ -31,8 +31,8 @@ class LocationController extends Controller
     public function store(StoreLocationRequest $request)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:locations',
+            'name' => 'required|unique:locations,name',
+            'slug' => 'required|unique:locations,slug',
         ]);
 
         Location::create($request->all());
@@ -61,8 +61,8 @@ class LocationController extends Controller
     public function update(UpdateLocationRequest $request, Location $location)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:departments',
+            'name' => 'required|unique:locations,name,' . $location->id,
+            'slug' => 'required|unique:locations,slug,' . $location->id,
         ]);
 
         $location->update($request->all());

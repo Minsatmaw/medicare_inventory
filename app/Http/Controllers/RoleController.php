@@ -19,7 +19,7 @@ class RoleController extends Controller
 
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::paginate(10);
 
         return view('roles.index', compact('roles'));
     }
@@ -40,8 +40,8 @@ class RoleController extends Controller
     public function store(StoreRoleRequest $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:roles',
+            'name' => 'required|unique:roles,name',
+            'slug' => 'required|unique:roles,slug',
             'description' => 'nullable',
             'permissions' => 'array',
         ]);
@@ -93,7 +93,7 @@ class RoleController extends Controller
     public function update(UpdateRoleRequest $request, Role $role)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:roles,name,' . $role->id,
             'slug' => 'required|unique:roles,slug,' . $role->id,
             'description' => 'nullable',
             'permissions' => 'array',

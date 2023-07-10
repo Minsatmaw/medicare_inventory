@@ -31,10 +31,10 @@
 
             <div class="mb-4">
                 <label for="stock" class="block mb-1 font-semibold ">Stock</label>
-                <input type="number" name="stock" id="stock" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
-                @if(session('error'))
-                    <p class="mt-2 text-red-500">{{ session('error') }}</p>
-                @endif
+                <input type="number" name="stock" id="stock" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 @error('stock') border-red-700 is-invalid  @enderror" value="{{old('stock')}}">
+                @error('stock')
+                    <div class="text-red-600 invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-4">

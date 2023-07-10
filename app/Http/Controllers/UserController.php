@@ -44,7 +44,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::with('roles')->get();
+        $users = User::with('roles')->paginate(10);
 
         return view('users.index', compact('users'));
 
@@ -69,8 +69,8 @@ class UserController extends Controller
 
 
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'name' => 'required|unique:users,name',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
             'role' => 'required'
         ]);
@@ -124,7 +124,7 @@ class UserController extends Controller
 
 
         $validatedData = $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:users,name,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
             'role' => 'required',
             'permissions' => 'nullable|array',

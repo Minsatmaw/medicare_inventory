@@ -16,7 +16,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::with('itemcategory', 'supplier', 'location')->get();
+        $items = Item::with('itemcategory', 'supplier', 'location')->paginate(10);
         return view('items.index', compact('items'));
 
     }
@@ -38,8 +38,8 @@ class ItemController extends Controller
     public function store(StoreItemRequest $request)
     {
         $request->validate([
-            'code' => 'required',
-            'name' => 'required',
+            'code' => 'required|unique:items,code',
+            'name' => 'required|unique:items,name',
             'itemcategory_id' => 'nullable',
             'supplier_id' => 'nullable',
             'location_id' => 'required',
@@ -96,8 +96,8 @@ class ItemController extends Controller
     public function update(UpdateItemRequest $request, Item $item)
     {
         $request->validate([
-            'code' => 'required',
-            'name' => 'required',
+            'code' => 'required|unique:items,code,' .  $item->id,
+            'name' => 'required|unique:items,name,' . $item->id,
             'itemcategory_id' => 'nullable',
             'supplier_id' => 'nullable',
             'location_id' => 'required',
