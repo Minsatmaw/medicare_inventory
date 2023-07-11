@@ -19,8 +19,8 @@
                 
                 <div class="mb-4">
                     <label for="slug" class="block mb-1 font-semibold text-gray-700">Slug</label>
-                    <input type="text" name="slug" id="slug" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 @error('name') border-red-700 is-invalid  @enderror" value="{{ $person->slug }}" required>
-                    @error('name')
+                    <input type="text" name="slug" id="slug" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 @error('slug') border-red-700 is-invalid  @enderror" value="{{ $person->slug }}" required>
+                    @error('slug')
                         <div class="text-red-600 invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
