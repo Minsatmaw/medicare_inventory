@@ -4,9 +4,14 @@
     <div class="py-4">
 
         @if(session('success'))
-            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" class="px-3 py-3 mt-2 text-green-500 bg-green-300 border">
-                {{ session('success') }}
-            </div>
+          <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" class="px-3 py-3 mt-2 text-green-500 bg-green-300 border">
+              {{ session('success') }}
+          </div>
+        @endif
+        @if(session('error'))
+          <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" class="px-3 py-3 mt-2 text-red-500 bg-red-300 border">
+              {{ session('error') }}
+          </div>
         @endif
         
         <div class="inline-block min-w-full overflow-hidden align-middle">

@@ -78,7 +78,7 @@ class ItStockController extends Controller
       'status' => $request->is_in ? "IN" : "OUT",
       'description' => $request->description,
     ]);
-    return redirect()->route('it_stocks.index')->with('success', 'IT Item Stock created successfully.');
+    return redirect()->back()->with('success', 'IT Item Stock created successfully.');
   }
 
   /**
