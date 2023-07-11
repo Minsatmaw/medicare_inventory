@@ -2,7 +2,7 @@
 <div class="flex flex-row justify-center min-h-screen bg-gray-100">
     <div class="flex flex-col w-64 overflow-hidden bg-white ">
       <div class="flex items-center justify-center h-20 shadow-md">
-            <h1 class="text-3xl text-indigo-500 uppercase">Logo</h1>
+        <img class="w-40 h-20 mx-auto" src="{{asset('img/Phase2LogoResized.gif')}}" alt="logo">
       </div>
       <ul class="flex flex-col py-4">
             {{-- <li class="{{ Request::is('dashboard*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">

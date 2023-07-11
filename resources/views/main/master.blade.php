@@ -55,11 +55,6 @@
 
                 <main class="flex-1 overflow-y-auto bg-gray-50 ">
                     <div class="container px-2 py-2 mx-auto">
-                        {{-- Conditional rendering for the Livewire component --}}
-                        @if (isset($showItRecords) && $showItRecords)
-                            @livewire('it-records')
-                        @endif
-
                         @yield('body')
                     </div>
                 </main>
