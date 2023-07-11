@@ -17,7 +17,7 @@
         <div class="inline-block min-w-full overflow-hidden align-middle">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="px-4 py-2 text-2xl font-bold rounded-md">IT Item Stock List </h2>
-
+            <span><a href="{{ route('it_stocks.create') }}"><button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Item In/Out Form</button></a></span>  
             </div>
             @if ($itStocks->count() > 0)
                 <table class="min-w-full bg-white border border-gray-200">
