@@ -9,6 +9,7 @@ class ItemRecord extends Model
 {
   use HasFactory;
   protected $fillable = [
+    'department_id',
     'person_id',
     'item_id',
     'stock',

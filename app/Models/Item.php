@@ -15,6 +15,7 @@ class Item extends Model
         'code',
         'name',
         'itemcategory_id',
+        'department_id',
         'supplier_id',
         'location_id',
     ];
@@ -32,6 +33,11 @@ class Item extends Model
         return $this->belongsTo(Location::class, 'location_id');
     }
 
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
 
+    
 
 }

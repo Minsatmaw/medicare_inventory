@@ -6,8 +6,8 @@
       </div>
       <ul class="flex flex-col py-4">
         {{-- Item Stock List --}}
-        <li class="{{ Request::is('it_stocks*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('it_stocks.index')}}">
+        <li class="{{ Request::is('item_stocks*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('item_stocks.index')}}">
                 <span class="mx-3">Item Stock List</span>
             </a>
         </li>

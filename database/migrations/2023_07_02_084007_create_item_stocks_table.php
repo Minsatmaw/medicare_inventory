@@ -11,10 +11,11 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('it_stocks', function (Blueprint $table) {
+    Schema::create('item_stocks', function (Blueprint $table) {
       $table->id();
       $table->foreignId('person_id')->constrained()->onDelete('cascade');
       $table->foreignId('item_id')->constrained()->onDelete('cascade');
+      $table->string('department_id');
       $table->unsignedBigInteger('stock');
       $table->boolean('is_in')->default(true);
       $table->timestamps();
@@ -26,6 +27,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('it_stocks');
+    Schema::dropIfExists('item_stocks');
   }
 };

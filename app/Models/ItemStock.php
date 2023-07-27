@@ -7,10 +7,11 @@ use App\Models\Person;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ItStock extends Model
+class ItemStock extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'department_id',
         'person_id',
         'item_id',
         'stock',
@@ -26,5 +27,10 @@ class ItStock extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 }

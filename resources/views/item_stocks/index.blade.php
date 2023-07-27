@@ -13,18 +13,19 @@
               {{ session('error') }}
           </div>
         @endif
-        
+
         <div class="inline-block min-w-full overflow-hidden align-middle">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="px-4 py-2 text-2xl font-bold rounded-md">IT Item Stock List </h2>
-            <span><a href="{{ route('it_stocks.create') }}"><button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Item In/Out Form</button></a></span>  
+                <h2 class="px-4 py-2 text-2xl font-bold rounded-md">Item Stock List </h2>
+            <span><a href="{{ route('item_stocks.create') }}"><button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Item In/Out Form</button></a></span>
             </div>
-            @if ($itStocks->count() > 0)
+            @if ($itemStocks->count() > 0)
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead>
                         <tr>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border-b border-gray-200">Item</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border-b border-gray-200">Item Category</th>
+                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border-b border-gray-200">Department</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border-b border-gray-200">Location</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border-b border-gray-200">Supplier</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border-b border-gray-200">Stock</th>
@@ -32,15 +33,18 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white ">
-                        @foreach ($itStocks as $itStock)
+                        @foreach ($itemStocks as $itemStock)
                             <tr>
-                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $itStock->item->name }}</td>
-                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $itStock->item->itemcategory->name }}</td>
+                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $itemStock->item->name }}</td>
+                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $itemStock->item->itemcategory->name }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">
-                                    <span class="inline-block px-2 py-1 text-xs font-semibold text-white bg-purple-500 rounded-full">{{ $itStock->item->location->name }}</span>
+                                    <span class="inline-block px-2 py-1 text-xs font-semibold text-white bg-orange-500 rounded-full">{{ $itemStock->item->department->name }}</span>
                                 </td>
-                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $itStock->item->supplier->name }}</td>
-                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $itStock->stock }}</td>
+                                <td class="px-4 py-2 text-center border-b border-gray-200">
+                                    <span class="inline-block px-2 py-1 text-xs font-semibold text-white bg-purple-500 rounded-full">{{ $itemStock->item->location->name }}</span>
+                                </td>
+                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $itemStock->item->supplier->name }}</td>
+                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $itemStock->stock }}</td>
 
                                 {{-- <td class="px-4 py-2 text-center border-b border-gray-200">
                                     <a href="{{ route('itemcategories.show', $itemcategory->id) }}" class="text-blue-500 hover:underline">View</a>
@@ -60,12 +64,12 @@
                     </tbody>
                 </table>
             @else
-                <p>No IT Item Record found.</p>
+                <p>No Item Record found.</p>
             @endif
         </div>
 
         <div class="mt-4">
-            {{ $itStocks->links() }}
+            {{ $itemStocks->links() }}
         </div>
 
     </div>

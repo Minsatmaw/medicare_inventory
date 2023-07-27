@@ -10,7 +10,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonController;
-use App\Http\Controllers\ItStockController;
+use App\Http\Controllers\ItemStockController;
 use App\Http\Controllers\ItemRecordController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SupplierController;
@@ -62,7 +62,7 @@ Route::middleware([
   Route::resource('/profile/', UpdateProfileInformationForm::class);
 
   // Route::resource('it_records', ItRecordController::class)->only(['index', 'create', 'store']);
-  Route::resource('it_stocks', ItStockController::class)->only(['index', 'create', 'store']);
+  Route::resource('item_stocks', ItemStockController::class)->only(['index', 'create', 'store']);
 
   //livewire routes
   Route::get('/item_records', function () {

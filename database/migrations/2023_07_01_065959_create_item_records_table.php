@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('person_id')->constrained()->onDelete('cascade');
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
-            // $table->string('department_id');
+            $table->string('department_id');
             $table->unsignedBigInteger('stock');
             $table->string('status')->default('IN'); // Column for "IN" or "OUT" status
             $table->timestamps();

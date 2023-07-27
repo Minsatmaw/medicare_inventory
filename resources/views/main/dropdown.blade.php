@@ -8,8 +8,8 @@
     <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 z-10 w-full h-full"></div>
 
     <div x-show="dropdownOpen" class="absolute right-0 z-20 w-48 py-2 mt-2 bg-white rounded-md shadow-xl">
-        <a href="{{route('it_stocks.index')}}" class="block px-4 py-2 text-sm text-gray-700 capitalize hover:bg-blue-400 hover:rounded-2xl hover:text-white">
-            IT Ttem Stock List
+        <a href="{{route('item_stocks.index')}}" class="block px-4 py-2 text-sm text-gray-700 capitalize hover:bg-blue-400 hover:rounded-2xl hover:text-white">
+            Ttem Stock List
         </a>
 
         <div x-data="{ isOpen: false }">
@@ -99,7 +99,7 @@
 
                 <li>
                     <a href="{{route('livewire.item-records')}}" class="block px-4 py-2 text-sm text-gray-700 capitalize hover:bg-blue-400 hover:rounded-2xl hover:text-white">
-                        IT Item Records
+                        Item Records
                     </a>
                 </li>
 

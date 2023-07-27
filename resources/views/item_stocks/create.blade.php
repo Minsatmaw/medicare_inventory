@@ -15,10 +15,23 @@
 
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="mb-6">
-            <h2 class="text-2xl font-bold">Create IT Item Stock </h2>
+            <h2 class="text-2xl font-bold">Create Item Stock </h2>
         </div>
-        <form action="{{ route('it_stocks.store') }}" method="POST" class="">
+        <form action="{{ route('item_stocks.store') }}" method="POST" class="">
             @csrf
+
+
+            <div class="mb-4">
+                <label for="department_id" class="block mb-1 font-semibold ">Department</label>
+                <select name="department_id" id="department_id" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" >
+                    @foreach($departments as $department)
+                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    @endforeach
+                </select>
+
+            </div>
+
+
             <div class="mb-4">
                 <label for="person_id" class="block mb-1 font-semibold ">Person</label>
                 <select name="person_id" id="person_id" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" >

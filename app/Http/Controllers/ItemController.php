@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Location;
 use App\Models\Supplier;
+use App\Models\Department;
 use App\Models\Itemcategory;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -16,7 +18,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::with('itemcategory', 'supplier', 'location')->paginate(10);
+        $items = Item::with('itemcategory', 'supplier', 'location', 'department')->paginate(10);
         return view('items.index', compact('items'));
 
     }
@@ -29,7 +31,8 @@ class ItemController extends Controller
         $itemcategories = Itemcategory::all();
         $suppliers = Supplier::all();
         $locations = Location::all();
-        return view('items.create', compact('itemcategories', 'suppliers', 'locations'));
+        $departments = Department::all();
+        return view('items.create', compact('itemcategories', 'suppliers', 'locations', 'departments'));
     }
 
     /**
@@ -37,18 +40,23 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        $request->validate([
-            'code' => 'required|unique:items,code',
-            'name' => 'required|unique:items,name',
-            'itemcategory_id' => 'nullable',
-            'supplier_id' => 'nullable',
-            'location_id' => 'required',
-        ]);
+        // $request->validate([
+        //     'code' => 'required',
+        //     'name' => 'required',
+        //     'itemcategory_id' => 'nullable',
+        //     'supplier_id' => 'nullable',
+        //     'location_id' => 'required',
+        //     'department_id' => 'required',
+        // ]);
+
+        // $query = Item::where('code', '111101')
+        //                 ->where('department_id', $request->department_id )->get();
 
         $data = [
             'code' => $request->input('code'),
             'name' => $request->input('name'),
             'location_id' => $request->input('location_id'),
+            'department_id' => $request->input('department_id'),
         ];
 
         if ($request->filled('itemcategory_id')) {
@@ -72,7 +80,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        $items = Item::with('itemcategory', 'supplier', 'location')->get();
+        $items = Item::with('itemcategory', 'supplier', 'location', 'department')->get();
 
         return view('items.show', compact('items'));
     }
@@ -85,8 +93,9 @@ class ItemController extends Controller
         $suppliers = Supplier::all();
         $itemcategories = Itemcategory::all();
         $locations = Location::all();
+        $departments = Department::all();
 
-        return view('items.edit', compact('item', 'itemcategories', 'suppliers', 'locations'));
+        return view('items.edit', compact('item', 'itemcategories', 'suppliers', 'locations', 'departments'));
 
     }
 
@@ -101,12 +110,14 @@ class ItemController extends Controller
             'itemcategory_id' => 'nullable',
             'supplier_id' => 'nullable',
             'location_id' => 'required',
+            'department_id' => 'required',
         ]);
 
         $data = [
             'code' => $request->input('code'),
             'name' => $request->input('name'),
             'location_id' => $request->input('location_id'),
+            'department_id' => $request->input('department_id'),
         ];
 
         if ($request->filled('itemcategory_id')) {

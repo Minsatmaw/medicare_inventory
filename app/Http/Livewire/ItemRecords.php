@@ -96,6 +96,10 @@ final class ItemRecords extends PowerGridComponent
             ->addColumn('item_id', function (ItemRecord $model) {
                 return optional($model->item)->name;
             })
+            ->addColumn('department_id', function (ItemRecord $model) {
+                return optional($model->item->department)->name;
+            })
+
 
            /** Example of custom column using a closure **/
             ->addColumn('status_lower', fn (ItemRecord $model) => strtolower(e($model->status)))
@@ -122,17 +126,21 @@ final class ItemRecords extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Person id', 'person_id')
-            ->sortable()
-            ->searchable(),
+            Column::make('Person', 'person_id')
+                ->sortable()
+                ->searchable(),
 
-            Column::make('Item id', 'item_id')
-            ->sortable()
-            ->searchable(),
+            Column::make('Item', 'item_id')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Department', 'department_id')
+                ->sortable()
+                ->searchable(),
 
             Column::make('Stock', 'stock')
-            ->sortable()
-            ->searchable(),
+                ->sortable()
+                ->searchable(),
 
             Column::make('Status', 'status')
                 ->sortable()

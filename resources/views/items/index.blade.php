@@ -22,6 +22,7 @@
                         <tr>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Code</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Name</th>
+                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Department</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Category</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Location</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Supplier</th>
@@ -34,6 +35,9 @@
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->code }}</td>
 
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->name }}</td>
+
+                                <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->department->name }}</td>
+
 
                                 @if ($item->itemcategory_id)
                                     <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->itemcategory->name }}</td>

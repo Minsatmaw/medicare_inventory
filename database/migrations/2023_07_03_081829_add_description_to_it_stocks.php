@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('it_stocks', function (Blueprint $table) {
+        Schema::table('item_stocks', function (Blueprint $table) {
             $table->longText('description')->nullable()->after('stock');
 
         });
@@ -22,9 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('it_stocks', function (Blueprint $table) {
+        Schema::table('item_stocks', function (Blueprint $table) {
             $table->longText('description')->nullable()->after('stock');
-            
+
         });
     }
 };

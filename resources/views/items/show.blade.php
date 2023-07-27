@@ -18,6 +18,11 @@
                 </div>
 
                 <div class="mb-4">
+                    <h3 class="text-lg font-semibold">Department:</h3>
+                    <p>{{$item->department->name}}</p>
+                </div>
+
+                <div class="mb-4">
                     <h3 class="text-lg font-semibold">Category:</h3>
                     <p>{{ $item->itemcategory->name }}</p>
                 </div>

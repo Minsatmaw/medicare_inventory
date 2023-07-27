@@ -4,20 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Person;
-use App\Models\ItStock;
+use App\Models\ItemStock;
+use App\Models\Department;
 use App\Models\ItemRecord;
 use Illuminate\Http\Request;
 
-class ItStockController extends Controller
+class ItemStockController extends Controller
 {
   /**
    * Display a listing of the resource.
    */
   public function index()
   {
-    $itStocks = ItStock::with(['person', 'item'])->paginate(10);
+    $itemStocks = ItemStock::with(['person', 'item', 'department'])->paginate(10);
 
-    return view('it_stocks.index', compact('itStocks'));
+    return view('item_stocks.index', compact('itemStocks'));
   }
 
   /**
@@ -27,10 +28,11 @@ class ItStockController extends Controller
   {
     $people = Person::all();
     $items = Item::all();
-    $itStocks = ItStock::all();
+    $itemStocks = ItemStock::all();
+    $departments = Department::all();
 
 
-    return view('it_stocks.create', compact('people', 'items', 'itStocks'));
+    return view('item_stocks.create', compact('people', 'items', 'itemStocks', 'departments'));
   }
 
   /**
@@ -40,39 +42,40 @@ class ItStockController extends Controller
   {
     $request->validate([
       'person_id' => 'required',
+      'department_id' => 'required',
       'item_id' => 'required',
       'stock' => 'required|numeric',
       'is_in' => 'required|boolean',
       'description' => 'nullable',
     ]);
 
-    $itStock = ItStock::where('item_id', $request->item_id)->first();
+    $itemStock = ItemStock::where('item_id', $request->item_id)
+        ->where('department_id', $request->department_id)
+        ->first();
 
-    if ($itStock) {
+    if ($itemStock) {
       if ($request->is_in) {
-        $itStock->stock += $request->stock;
+        $itemStock->stock += $request->stock;
       } else {
-        $itStock->stock -= $request->stock;
+        $itemStock->stock -= $request->stock;
 
-        if ($itStock->stock < 0) {
+        if ($itemStock->stock < 0) {
           return redirect()->back()->with('error', 'Insufficient stock.');
         }
       }
-      $itStock->save();
+      $itemStock->save();
     } else {
 
       if ($request->is_in == 0) {
         return redirect()->back()->with('error', 'Insufficient stock.');
       }
 
-
-
-
-      ItStock::create($request->all());
+      ItemStock::create($request->all());
     }
 
     ItemRecord::create([
       'person_id' => $request->person_id,
+      'department_id' => $request->department_id,
       'item_id' => $request->item_id,
       'stock' => $request->stock,
       'status' => $request->is_in ? "IN" : "OUT",

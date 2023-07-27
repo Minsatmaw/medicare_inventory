@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('itemcategory_id')->nullable()->default(null);
             $table->string('location_id');
             $table->unsignedBigInteger('supplier_id')->nullable()->default(null);
+            $table->string('department_id');
             $table->timestamps();
         });
     }
