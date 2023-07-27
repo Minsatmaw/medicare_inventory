@@ -14,8 +14,9 @@ class DepartmentSeeder extends Seeder
     public function run(): void
     {
         Department::create([
-            'name' => 'IT Department',
-            'slug' => 'IT',
+            'id' => '1',
+            'name' => 'Super Admin Department',
+            'slug' => 'superadmin',
         ]);
     }
 }

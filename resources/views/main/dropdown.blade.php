@@ -98,7 +98,7 @@
             <ul x-show="isOpen" class="pl-4 pr-2 mt-2 space-y-1">
 
                 <li>
-                    <a href="{{route('livewire.it-records')}}" class="block px-4 py-2 text-sm text-gray-700 capitalize hover:bg-blue-400 hover:rounded-2xl hover:text-white">
+                    <a href="{{route('livewire.item-records')}}" class="block px-4 py-2 text-sm text-gray-700 capitalize hover:bg-blue-400 hover:rounded-2xl hover:text-white">
                         IT Item Records
                     </a>
                 </li>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Person;
 use App\Models\ItStock;
-use App\Models\ItRecord;
+use App\Models\ItemRecord;
 use Illuminate\Http\Request;
 
 class ItStockController extends Controller
@@ -71,7 +71,7 @@ class ItStockController extends Controller
       ItStock::create($request->all());
     }
 
-    ItRecord::create([
+    ItemRecord::create([
       'person_id' => $request->person_id,
       'item_id' => $request->item_id,
       'stock' => $request->stock,

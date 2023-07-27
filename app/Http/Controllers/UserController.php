@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Department;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -42,11 +44,24 @@ class UserController extends Controller
     }
 
 
+
+
+
     public function index()
     {
-        $users = User::with('roles')->paginate(10);
+
+        $users = User::with('roles', 'departments')->paginate(10);
 
         return view('users.index', compact('users'));
+
+    }
+
+
+
+    protected function getLoggedInUserRole()
+    {
+        return Auth::user()->roles[0]->slug; // Assuming your user model has a 'role' property to represent the user's role
+
 
     }
 
@@ -55,10 +70,16 @@ class UserController extends Controller
      */
     public function create(User $user)
     {
-        $roles = Role::all();
+
+        // Get the logged-in user's role
+        $loggedInUserRole = $this->getLoggedInUserRole();
+        // Get all roles except "superadmin" if the logged-in user is not "superadmin"
+        $roles = $loggedInUserRole === 'superadmin' ? Role::all() : Role::where('slug', '<>', 'superadmin')->get();
+
+        $departments = Department::all();
 
 
-        return view('users.create',compact('roles'));
+        return view('users.create',compact('roles', 'departments'));
     }
 
     /**
@@ -72,13 +93,15 @@ class UserController extends Controller
             'name' => 'required|unique:users,name',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
-            'role' => 'required'
+            'role' => 'required',
+            'department_id'=> 'required',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'department_id' => $request->department_id,
         ]);
 
         $role = Role::findOrFail($request->role);
@@ -106,14 +129,20 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::all();
+        // Get the logged-in user's role
+        $loggedInUserRole = $this->getLoggedInUserRole();
+
+        // Get all roles except "superadmin" if the logged-in user is not "superadmin"
+        $roles = $loggedInUserRole === 'superadmin' ? Role::all() : Role::where('name', '<>', 'superadmin')->get();
+
         $permissions = Permission::all();
+        $departments = Department::all();
         $user_permissions = [];
         foreach($user->permissions as $permission){
           $user_permissions[]=$permission->id;
         };
 
-        return view('users.edit', compact('user', 'roles', 'permissions', 'user_permissions'));
+        return view('users.edit', compact('user', 'roles', 'departments', 'permissions', 'user_permissions'));
     }
 
     /**
@@ -128,6 +157,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $user->id,
             'role' => 'required',
             'permissions' => 'nullable|array',
+            'department_id' => 'required',
         ]);
 
         $user->update([
@@ -135,6 +165,7 @@ class UserController extends Controller
            'email' => $validatedData['email'],
            'role' => $validatedData['role'],
            'permissions' => $validatedData['permissions'],
+           'department_id' => $request->input('department_id'),
         ]);
 
         $role = Role::findOrFail($request->role);

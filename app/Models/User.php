@@ -6,11 +6,12 @@ use App\Models\Role;
 use App\Models\Permission;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -30,6 +31,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'department_id'
     ];
 
     /**
@@ -67,24 +69,19 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    // public function permissions(){
-    //     return $this->belongsToMany(Permission::class, 'user_permission');
-    // }
+
 
     public function permissions()
     {
         return $this->belongsToMany(Permission::class);
     }
 
-    // protected static function boot()
-    // {
-    //     parent::boot();
+    public function departments()
+    {
+        return $this->belongsTo(Department::class,  'department_id' , 'id');
+    }
 
-    //     static::created(function ($user) {
-    //         $permission = Permission::find(1); // Retrieve the permission you want to attach
-    //         $user->permissions()->attach($permission);
-    //     });
-    // }
+
 
 
 
@@ -97,28 +94,29 @@ class User extends Authenticatable
         return $role->intersect($this->roles)->count() > 0;
     }
 
-    // public function hasPermission($permission)
-    // {
-    //     return $this->roles->flatMap(function($role){
-    //         return $role->permissions->pluck('slug');
-    //     })->contains($permission);
-    // }
 
     public function hasPermission($permission)
-{
-    // Check if the user has the permission directly assigned
-    if ($this->permissions->contains('slug', $permission)) {
-        return true;
-    }
-
-    // Check if any of the user's roles have the permission
-    foreach ($this->roles as $role) {
-        if ($role->permissions->contains('slug', $permission)) {
+    {
+        // Check if the user has the permission directly assigned
+        if ($this->permissions->contains('slug', $permission)) {
             return true;
         }
+
+        // Check if any of the user's roles have the permission
+        foreach ($this->roles as $role) {
+            if ($role->permissions->contains('slug', $permission)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    return false;
-}
+
+    // public function isSuperAdmin()
+    // {
+    //     return $this->roles->contains('slug', 'superadmin');
+    // }
+
 
 }

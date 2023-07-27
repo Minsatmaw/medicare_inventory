@@ -82,6 +82,12 @@ class RoleController extends Controller
         $permissions = Permission::all();
         $rolePermissions = $role->permissions()->pluck('id')->toArray();
 
+        // Check if the role is "superadmin" and prevent editing
+        if ($role->slug === 'superadmin') {
+            return redirect()->route('roles.index')
+                ->with('error', 'Cannot edit the "superadmin" role.');
+        }
+
         return view('roles.edit', compact('role', 'permissions', 'rolePermissions'));
 
 
@@ -120,6 +126,12 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+
+        // Check if the role is "superadmin" and prevent deletion
+        if($role->slug === 'superadmin'){
+            return redirect()->route('roles.index')->with('error', 'Cannot Delete the "Super Admin" role.');
+        }
+
         $role->delete();
 
         return redirect()->route('roles.index')->with('success', 'Role deleted successfully.');

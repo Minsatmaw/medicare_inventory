@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ItRecord extends Model
+class ItemRecord extends Model
 {
   use HasFactory;
   protected $fillable = [
@@ -26,5 +26,7 @@ public function item()
 {
     return $this->belongsTo(Item::class);
 }
+
+
 
 }

@@ -2,6 +2,6 @@
 
 @section('body')
     <div>
-        @livewire('it-records') <!-- Include the PowerGrid component -->
+        @livewire('item-records') <!-- Include the PowerGrid component -->
     </div>
 @endsection

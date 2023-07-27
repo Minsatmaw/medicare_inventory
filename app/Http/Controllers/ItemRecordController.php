@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Person;
-use App\Models\ItRecord;
+use App\Models\ItemRecord;
 use Illuminate\Http\Request;
 
-class ItRecordController extends Controller
+class ItemRecordController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+
     }
 
     /**

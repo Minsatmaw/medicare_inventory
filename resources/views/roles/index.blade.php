@@ -35,15 +35,21 @@
                                 <td class="px-4 py-2 text-center border-b border-gray-200">
                                     <a href="{{ route('roles.show', $role->id) }}" class="text-blue-500 hover:underline">View</a>
                                     @can('role-create')
+                                    @if ($role->slug !== 'superadmin')
+                                        {{-- Show the edit button only for non-"superadmin" roles --}}
                                         <a href="{{ route('roles.edit', $role->id) }}" class="text-yellow-500 hover:underline">Edit</a>
-                                    @endcan
-                                    @can('role-delete')
+                                    @endif
+                                @endcan
+                                @can('role-delete')
+                                    @if ($role->slug !== 'superadmin')
+                                        {{-- Show the delete button only for non-"superadmin" roles --}}
                                         <form action="{{ route('roles.destroy', $role->id) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-500 hover:underline">Delete</button>
                                         </form>
-                                    @endcan
+                                    @endif
+                                @endcan
                                 </td>
                             </tr>
                         @endforeach

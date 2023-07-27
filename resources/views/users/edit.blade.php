@@ -16,6 +16,7 @@
                         <div class="text-red-600 invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
                 <div class="mb-4">
                     <label for="email" class="block mb-1 font-semibold text-gray-700">Email</label>
                     <input type="email" name="email" id="email" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 @error('name') border-red-700 is-invalid  @enderror" value="{{ $user->email }}" required>
@@ -23,6 +24,16 @@
                         <div class="text-red-600 invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="mb-4">
+                    <label for="department" class="block mb-1 font-semibold text-gray-700">department</label>
+                    <select name="department" id="department" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                        @foreach($departments as $department)
+                            <option value="{{ $department->id }}" {{ $department->id == $user->department_id ? 'selected' : '' }}>{{ $department->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="mb-4">
                     <label for="role" class="block mb-1 font-semibold text-gray-700">Role</label>
                     <select name="role" id="role" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">

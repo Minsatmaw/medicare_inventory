@@ -30,10 +30,10 @@ class SupplierController extends Controller
      */
     public function store(StoreSupplierRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:suppliers,name',
-            'slug' => 'required|unique:suppliers,slug',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|unique:suppliers,name',
+        //     'slug' => 'required|unique:suppliers,slug',
+        // ]);
 
         Supplier::create($request->all());
         return redirect()->route('suppliers.index')->with('success','Supplier created successfully');

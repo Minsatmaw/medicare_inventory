@@ -25,9 +25,9 @@
 
               <!-- Dropdown Items -->
               <ul x-show="isOpenthree" @click.away="isOpenthree = false; localStorage.setItem('dropdownOpenthree', false)" class="pl-4 pr-2 mt-2 space-y-1">
-                  <li class="{{ Request::is('it_records*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-                      <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('livewire.it-records')}}">
-                          <span class="mx-3">IT Item Records</span>
+                  <li class="{{ Request::is('item_records*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                      <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('livewire.item-records')}}">
+                          <span class="mx-3">Item Records</span>
                       </a>
                   </li>
               </ul>

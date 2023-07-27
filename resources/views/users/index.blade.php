@@ -7,7 +7,7 @@
             <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" class="px-3 py-3 mt-2 text-green-500 bg-green-300 border">
                 {{ session('success') }}
             </div>
-        @endif 
+        @endif
 
         <div class="inline-block min-w-full overflow-hidden align-middle">
             <div class="flex items-center justify-between mb-6">
@@ -24,6 +24,7 @@
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Name</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Email</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Roles</th>
+                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Departments</th>
                             <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Actions</th>
                         </tr>
                     </thead>
@@ -34,25 +35,30 @@
                                 <td class="px-4 py-2 border-b border-gray-200">
                                     <div class="font-medium text-gray-700">{{$user->name}}</div>
                                     <div class="text-gray-400">{{$user->email}}</div>
-                                  </td>
+                                </td>
+
                                 <td class="px-4 py-2 border-b border-gray-200">{{ $user->email }}</td>
+
                                 <td class="px-4 py-2 border-b border-gray-200">
                                     @foreach($user->roles as $role)
                                         <span class="inline-block px-2 py-1 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full ">{{ $role->slug }}</span>
                                     @endforeach
                                 </td>
+
+                                <td class="px-4 py-2 border-b border-gray-200">{{ $user->departments->name }}</td>
+
                                 <td class="px-4 py-2 border-b border-gray-200">
                                     <a href="{{ route('users.show', $user->id) }}" class="text-blue-500 hover:underline">View</a>
-                                  @can('user-edit')
-                                    <a href="{{ route('users.edit', $user->id) }}" class="text-yellow-500 hover:underline">Edit</a>
-                                  @endcan
-                                  @can('user-delete')
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-500 hover:underline">Delete</button>
-                                    </form>
-                                  @endcan
+                                    @can('user-edit')
+                                        <a href="{{ route('users.edit', $user->id) }}" class="text-yellow-500 hover:underline">Edit</a>
+                                    @endcan
+                                    @can('user-delete')
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 hover:underline">Delete</button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

@@ -11,14 +11,14 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ItStockController;
-use App\Http\Controllers\ItRecordController;
+use App\Http\Controllers\ItemRecordController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ItemcategoryController;
-use App\Http\Livewire\ItRecords;
-use App\Models\ItRecord;
+use App\Http\Livewire\ItemRecords;
+use App\Models\ItemRecord;
 use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
 
 /*
@@ -65,9 +65,9 @@ Route::middleware([
   Route::resource('it_stocks', ItStockController::class)->only(['index', 'create', 'store']);
 
   //livewire routes
-  Route::get('/it_records', function () {
-    return view('livewire.it-records');
-  })->name('livewire.it-records');
+  Route::get('/item_records', function () {
+    return view('livewire.item-records');
+  })->name('livewire.item-records');
 
 
 

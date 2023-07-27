@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\ItRecord;
+use App\Models\ItemRecord;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
@@ -12,7 +12,7 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 use App\Models\Person;
 use App\Models\Item;
 
-final class ItRecords extends PowerGridComponent
+final class ItemRecords extends PowerGridComponent
 {
     use ActionButton;
     use WithExport;
@@ -50,11 +50,11 @@ final class ItRecords extends PowerGridComponent
     /**
      * PowerGrid datasource.
      *
-     * @return Builder<\App\Models\ItRecord>
+     * @return Builder<\App\Models\ItemRecord>
      */
     public function datasource(): Builder
     {
-        return ItRecord::query();
+        return ItemRecord::query();
     }
 
     /*
@@ -90,15 +90,15 @@ final class ItRecords extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('person_id', function (ItRecord $model) {
+            ->addColumn('person_id', function (ItemRecord $model) {
                 return optional($model->person)->name;
             })
-            ->addColumn('item_id', function (ItRecord $model) {
+            ->addColumn('item_id', function (ItemRecord $model) {
                 return optional($model->item)->name;
             })
 
            /** Example of custom column using a closure **/
-            ->addColumn('status_lower', fn (ItRecord $model) => strtolower(e($model->status)))
+            ->addColumn('status_lower', fn (ItemRecord $model) => strtolower(e($model->status)))
 
             ->addColumn('description')
             ->addColumn('created_at');
@@ -168,7 +168,7 @@ final class ItRecords extends PowerGridComponent
     */
 
     /**
-     * PowerGrid ItRecord Action Buttons.
+     * PowerGrid ItemRecord Action Buttons.
      *
      * @return array<int, Button>
      */
@@ -179,13 +179,13 @@ final class ItRecords extends PowerGridComponent
        return [
            Button::make('edit', 'Edit')
                ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('it-record.edit', function(\App\Models\ItRecord $model) {
+               ->route('it-record.edit', function(\App\Models\ItemRecord $model) {
                     return $model->id;
                }),
 
            Button::make('destroy', 'Delete')
                ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('it-record.destroy', function(\App\Models\ItRecord $model) {
+               ->route('it-record.destroy', function(\App\Models\ItemRecord $model) {
                     return $model->id;
                })
                ->method('delete')
@@ -202,7 +202,7 @@ final class ItRecords extends PowerGridComponent
     */
 
     /**
-     * PowerGrid ItRecord Action Rules.
+     * PowerGrid ItemRecord Action Rules.
      *
      * @return array<int, RuleActions>
      */
