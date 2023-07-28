@@ -10,6 +10,7 @@ use App\Models\Itemcategory;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
@@ -34,6 +35,16 @@ class ItemController extends Controller
         $departments = Department::all();
         return view('items.create', compact('itemcategories', 'suppliers', 'locations', 'departments'));
     }
+
+    public function getRelatedItems($departmentId)
+    {
+        $relatedItems = Item::where('department_id', $departmentId)->get();
+        ddd($relatedItems);
+
+        return response()->json($relatedItems);
+
+    }
+
 
     /**
      * Store a newly created resource in storage.

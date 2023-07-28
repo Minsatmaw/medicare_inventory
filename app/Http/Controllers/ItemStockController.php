@@ -35,6 +35,10 @@ class ItemStockController extends Controller
     return view('item_stocks.create', compact('people', 'items', 'itemStocks', 'departments'));
   }
 
+
+ 
+
+
   /**
    * Store a newly created resource in storage.
    */

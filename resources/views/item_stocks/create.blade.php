@@ -28,7 +28,14 @@
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
                     @endforeach
                 </select>
+            </div>
 
+
+            <div class="mb-4">
+                <label for="item_id" class="block mb-1 font-semibold">Item Name</label>
+                <select name="item_id" id="item_id" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                    <!-- Default empty option -->
+                </select>
             </div>
 
 
@@ -42,7 +49,7 @@
 
             </div>
 
-            <div class="mb-4">
+            {{-- <div class="mb-4">
                 <label for="item_id" class="block mb-1 font-semibold ">Item Name</label>
                 <select name="item_id" id="item_id" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" >
                     @foreach($items as $item)
@@ -50,7 +57,7 @@
 
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
 
             <div class="mb-4">
                 <label for="stock" class="block mb-1 font-semibold ">Stock</label>
@@ -93,3 +100,29 @@
 @endsection
 
 
+
+@push('scripts')
+<script>
+    // When the department selection changes, fetch related items and update the item options
+    document.getElementById('department_id').addEventListener('change', function () {
+        var departmentId = this.value;
+        var itemSelect = document.getElementById('item_id');
+
+        // Clear existing item options
+        itemSelect.innerHTML = '<option value=""></option>';
+
+        // Fetch related items for the selected department using AJAX
+        fetch(`/items/related-items/${departmentId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Populate the item options with the retrieved items
+                data.forEach(item => {
+                    var option = document.createElement('option');
+                    option.value = item.id;
+                    option.textContent = item.name;
+                    itemSelect.appendChild(option);
+                });
+            });
+    });
+</script>
+@endpush
