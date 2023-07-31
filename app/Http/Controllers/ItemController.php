@@ -39,7 +39,6 @@ class ItemController extends Controller
     public function getRelatedItems($departmentId)
     {
         $relatedItems = Item::where('department_id', $departmentId)->get();
-        ddd($relatedItems);
 
         return response()->json($relatedItems);
 

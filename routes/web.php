@@ -64,7 +64,7 @@ Route::middleware([
   // Route::resource('it_records', ItRecordController::class)->only(['index', 'create', 'store']);
   Route::resource('item_stocks', ItemStockController::class)->only(['index', 'create', 'store']);
 
-  Route::get('/items/related-items/{departmentId}', 'ItemController@getRelatedItems')->name('items.relatedItems');
+  Route::get('/items/related-items/{departmentId}', [ItemController::class, 'getRelatedItems'])->name('items.relatedItems');
 
 
 

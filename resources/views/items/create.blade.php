@@ -29,7 +29,7 @@
                 <div class="mb-4">
                     <label for="department_id" class="block mb-1 font-semibold text-gray-700">Department</label>
                     <select name="department_id" id="department_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        <option value="">Choose a Item Category</option>
+                        <option value="">Choose a Department</option>
                         @foreach($departments as $department)
                             <option value="{{ $department->id }}">{{ $department->name }}</option>
                         @endforeach
