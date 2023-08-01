@@ -23,7 +23,7 @@
 
             <div class="mb-4">
                 <label for="department_id" class="block mb-1 font-semibold ">Department</label>
-                <select name="department_id" id="department_id" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" >
+                <select name="department_id" id="department_id" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 department-option" >
                     <option value="">Choose the Department</option>
                     @foreach($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -37,81 +37,54 @@
 
             <div class="mb-4">
                 <label for="item_id" class="block mb-1 font-semibold">Item Name</label>
-                <div x-data="{isOpen: false, selectedItem: ''}" @click.away="isOpen = false">
-                    <select @click="isOpen = !isOpen" x-model="selectedItem" name="item_id" id="item_id" class="w-full text-black border-gray-300 rounded-md shadow-sm cursor-pointer focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        <!-- Default empty option -->
-                    </select>
-                </div>
+                <select name="item_id" id="item_id" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 item-option">
+
+
+                </select>
             </div>
 
 
-
-
-
-
+            {{-- Update code --}}
             {{-- <div class="mb-4">
-                <label for="person_id" class="block mb-1 font-semibold">Person</label>
-                <div x-data="{ isOpen: false, selectedPerson: '' }" @click.away="isOpen = false">
-                    <select @click="isOpen = !isOpen" x-model="selectedPerson" name="person_id" id="person_id" class="w-full text-black border-gray-300 rounded-md shadow-sm cursor-pointer focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        <option value="">Select a person ...</option>
-                        @foreach($people as $person)
-                            <option :value="{{ $person->id }}">{{ $person->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <label for="department_id" class="block mb-1 font-semibold">Department</label>
+                <select
+                    name="department_id"
+                    id="department_id"
+                    x-data="{ departmentId: '', items: [] }"
+                    x-on:change="departmentId = $event.target.value; fetchItems()"
+                    class="w-full text-black border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 department-option search-option"
+                >
+                    <option value="">Choose the Department</option>
+                    @foreach($departments as $department)
+                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    @endforeach
+                </select>
             </div>
 
-            <input type="hidden" name="person_id" x-bind:value="selectedPerson"> --}}
-
-            <div class="mb-4 ">
-                <label for="person_id" class="block mb-1 font-semibold">Person</label>
-                <div x-data="{ isOpen: false, selectedPerson: '' }" @click.away="isOpen = false">
-                    <div @click="isOpen = !isOpen" class="w-full px-4 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        <span x-text="selectedPerson ? selectedPerson.name : 'Select a person ...'"></span>
-                    </div>
-                    <ul x-show="isOpen" class="absolute z-10 w-2/5 overflow-y-auto bg-white border border-gray-300 rounded-md shadow-lg max-h-40">
-                        @foreach($people as $person)
-                            <li class="cursor-pointer" @click="isOpen = false; selectedPerson = { id: '{{ $person->id }}', name: '{{ $person->name }}' }">
-                                <input type="radio" name="person_id" id="person_{{ $person->id }}" value="{{ $person->id }}" class="hidden">
-                                <label for="person_{{ $person->id }}" class="block px-4 py-2 hover:bg-gray-100">{{ $person->name }}</label>
-                            </li>
-                        @endforeach
-                    </ul>
-                    <input type="hidden" name="person_id" :value="selectedPerson.id">
-                </div>
-            </div>
-
-
-
-            {{-- <div class="mb-4">
-                <label for="person_id" class="block mb-1 font-semibold">Person</label>
-                <div x-data="{ isOpen: false, selectedPerson: '', searchQuery: '', people: @json($people) }" @click.away="isOpen = false">
-                    <div @click="isOpen = !isOpen" class="relative w-full text-black border-gray-300 rounded-md shadow-sm cursor-pointer focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        <span x-text="selectedPerson ? selectedPerson.name : 'Select a person'"></span>
-                        <input
-                            x-show="isOpen"
-                            x-cloak
-                            x-model="searchQuery"
-                            @click.away="isOpen = false"
-                            class="absolute w-full px-4 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-                            type="text"
-                            placeholder="Search person..."
-                        >
-                    </div>
-                    <ul x-show="isOpen" x-cloak class="absolute z-10 w-full py-2 mt-1 overflow-y-auto bg-white border border-gray-300 rounded-md shadow-lg max-h-40">
-                        <template x-for="person in filteredPeople" :key="person.id">
-                            <li class="cursor-pointer" @click="isOpen = false; selectedPerson = person">
-                                <input type="radio" name="person_id" :id="'person_' + person.id" :value="person.id" class="hidden">
-                                <label :for="'person_' + person.id" class="block px-4 py-2 hover:bg-gray-100" x-text="person.name"></label>
-                            </li>
-                        </template>
-                    </ul>
-                    <input type="hidden" name="person_id" :value="selectedPerson.id">
-                </div>
+            <div class="mb-4">
+                <label for="item_id" class="block mb-1 font-semibold">Item Name</label>
+                <select
+                    name="item_id"
+                    id="item_id"
+                    class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 item-option search-option"
+                >
+                    <option value="" class="text-sm text-gray-200">Choose Item</option>
+                    <template x-for="item in items" :key="item.id">
+                        <option :value="item.id" x-text="item.name"></option>
+                    </template>
+                </select>
             </div> --}}
 
 
-
+            <div class="mb-4">
+                <label for="person_id" class="block mb-1 font-semibold">Person</label>
+                <select name="person_id" id="person_id" class="w-full text-black border-gray-300 rounded-md shadow-sm search-option focus:border-blue-500 focus:ring focus:ring-blue-200">
+                    <option value="">Select Person</option>
+                    @foreach($people as $person)
+                        <option value="{{ $person->id }}">{{ $person->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
 
             <div class="mb-4">
@@ -121,6 +94,7 @@
                     <div class="text-red-600 invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
 
             <div class="mb-4">
                 <label class="block mb-1 font-semibold text-gray-700">Status</label>
@@ -158,8 +132,58 @@
 
 @push('scripts')
 <script>
+
+    //UPDATE code////////////////////////////////////////////////
+     // Initialize TomSelect for the Department select element after updating its options
+    //  new TomSelect("#department_id", {
+    //                 create: false,
+    //                 sortField: {
+    //                     field: "text",
+    //                     direction: "asc"
+    //                 }
+    //             });
+
+
+    // function fetchItems() {
+    //     var departmentId = document.getElementById('department_id').value;
+    //     var itemSelect = document.getElementById('item_id');
+
+    //     // Clear existing item options
+    //     itemSelect.innerHTML = '<option value="">Choose Item</option>';
+
+    //     // Fetch related items for the selected department using AJAX
+    //     fetch(`/items/related-items/${departmentId}`)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             // Populate the item options with the retrieved items
+    //             data.forEach(item => {
+    //                 var option = document.createElement('option');
+    //                 option.value = item.id;
+    //                 option.textContent = item.name;
+    //                 itemSelect.appendChild(option);
+    //             });
+
+
+
+    //             // Initialize TomSelect for the Item select element after updating its options
+    //             new TomSelect("#item_id", {
+    //                 create: false,
+    //                 sortField: {
+    //                     field: "text",
+    //                     direction: "asc"
+    //                 }
+    //             });
+    //         });
+    // }
+    //UPDATE code////////////////////////////////////////////////
+
+
+
+    //Before code //////////////////////////////////////////////////
+
     // When the department selection changes, fetch related items and update the item options
-    document.getElementById('department_id').addEventListener('change', function () {
+        document.getElementById('department_id').addEventListener('change', function () {
+
         var departmentId = this.value;
         var itemSelect = document.getElementById('item_id');
 
@@ -178,6 +202,40 @@
                     itemSelect.appendChild(option);
                 });
             });
-    });
+
+
+        });
+
+        new TomSelect("#department_id",{
+            create: false,
+            sortField: {
+                field: "text",
+                direction: "asc"
+            }
+        });
+
+        new TomSelect("#item_id",{
+            create: false,
+            sortField: {
+                field: "text",
+                direction: "asc"
+            }
+        });
+
+    //Before code //////////////////////////////////////////////////
+
+
+
+
+
+        new TomSelect("#person_id",{
+            create: false,
+            sortField: {
+                field: "text",
+                direction: "asc"
+            }
+        });
+
+
 </script>
 @endpush
