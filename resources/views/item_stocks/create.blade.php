@@ -182,7 +182,7 @@
     //Before code //////////////////////////////////////////////////
 
     // When the department selection changes, fetch related items and update the item options
-        document.getElementById('department_id').addEventListener('change', function () {
+      document.getElementById('department_id').addEventListener('change', function () {
 
         var departmentId = this.value;
         var itemSelect = document.getElementById('item_id');
@@ -201,6 +201,13 @@
                     option.textContent = item.name;
                     itemSelect.appendChild(option);
                 });
+                new TomSelect("#item_id",{
+                        create: false,
+                        sortField: {
+                            field: "text",
+                            direction: "asc"
+                        }
+                });
             });
 
 
@@ -214,19 +221,15 @@
             }
         });
 
-        new TomSelect("#item_id",{
-            create: false,
-            sortField: {
-                field: "text",
-                direction: "asc"
-            }
-        });
-
+        // new TomSelect("#item_id",{
+        //     create: false,
+        //     sortField: {
+        //         field: "text",
+        //         direction: "asc"
+        //     }
+        // });
+      
     //Before code //////////////////////////////////////////////////
-
-
-
-
 
         new TomSelect("#person_id",{
             create: false,
@@ -236,6 +239,6 @@
             }
         });
 
-
+      
 </script>
 @endpush
