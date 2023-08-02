@@ -7,6 +7,8 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/css/tom-select-custom.css',
+                 'resources/css/tom-select.css',
             ],
             refresh: [
                 ...refreshPaths,
