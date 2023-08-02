@@ -1,5 +1,7 @@
 <?php
 
+use SebastianBergmann\Type\TrueType;
+
 return [
 
     /*
@@ -90,7 +92,7 @@ return [
     |
     */
 
-    'cached_data' => false,
+    'cached_data' => true,
 
     /*
     |--------------------------------------------------------------------------
