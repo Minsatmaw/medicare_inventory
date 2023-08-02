@@ -1,0 +1,28 @@
+.ts-wrapper {
+    width: 100%; /* Custom width */
+  }
+
+  /* Custom styling for the dropdown options */
+  /* .tom-select {
+    background-color: #46f01c;
+    border: 1px solid #0866e0;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #ec4e10;
+  }
+
+  .tom-select .tom-select-dropdown .tom-select-option {
+    padding: 0.5rem 1rem;
+  }
+
+
+  .msm{
+    color: green;
+    border: 5px solid;
+    padding: 3px 4px;
+    font-size: 5px;
+  } */
+
+  /* .ts-dropdown{
+    padding: 4px ;
+} */

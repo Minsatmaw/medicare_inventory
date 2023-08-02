@@ -42,7 +42,7 @@
 
                 <div class="mb-4">
                     <label for="department_id" class="block mb-1 font-semibold text-gray-700">Department</label>
-                    <select name="department_id" id="department_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                    <select name="department_id" id="department_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 tom-select-element">
                         <option value="">Select Department</option>
                         @foreach($departments as $department)
                             <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -55,7 +55,7 @@
 
                 <div class="mb-4">
                     <label for="role" class="block mb-1 font-semibold text-gray-700">Role</label>
-                    <select name="role" id="role" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                    <select name="role" id="role" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 tom-select-element">
                         @foreach($roles as $role)
                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                         @endforeach
@@ -69,6 +69,28 @@
         </div>
     </div>
 @endsection
+
+
+@push('scripts')
+    <script>
+
+        // Find all select elements with the "tom-select-element" class
+        const tomSelectElements = document.querySelectorAll('.tom-select-element');
+
+        // Initialize TomSelect for each found select element
+        tomSelectElements.forEach(selectElement => {
+            new TomSelect(selectElement, {
+                create: false,
+                sortField: {
+                    field: "text",
+                    direction: "asc"
+                }
+            });
+        });
+
+
+    </script>
+@endpush
 
 
 

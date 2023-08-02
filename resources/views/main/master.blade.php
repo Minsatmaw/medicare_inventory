@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet"> --}}
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
@@ -25,17 +25,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-
-
-
-
-
-
-
-
-
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/tom-select-custom.css', 'resources/css/tom-select.css']) {{-- 'resources/js/tom-select.min.js', --}}
+
+
+    {{-- <link rel="stylesheet" href="{{asset('resources/css/tom-select.css')}}"> --}}
+
+
 </head>
 <body>
 
@@ -72,17 +68,21 @@
         </footer>
     </div>
 
-    
 
 
 
-    @stack('scripts')
+
+
+
+
 
     {{-- <script src="{{asset('resources/js/app.js')}}"></script> --}}
 
     @livewireScripts
 
-    {{-- <script src="{{asset('resources/js/app.js')}}"></script> --}}
+    {{-- <script src="{{asset('resources/js/cdn.jsdelivr.net_npm_tom-select@2.2.2_dist_js_tom-select.complete.min.js')}}"></script> --}}
+
+    @stack('scripts')
 
 
 </body>

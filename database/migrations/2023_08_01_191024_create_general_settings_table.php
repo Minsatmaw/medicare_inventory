@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('generals', function (Blueprint $table) {
+        Schema::create('general_settings', function (Blueprint $table) {
             $table->id();
-            $table->text('variable');
-            $table->text('value');
+            $table->string('app_title');
+            $table->string('brand_name');
+            $table->string('app_url');
+            $table->string('logo_image');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('generals');
+        Schema::dropIfExists('general_settings');
     }
 };

@@ -11,3 +11,6 @@ import './../../vendor/power-components/livewire-powergrid/dist/powergrid.css'
 Alpine.plugin(focus);
 
 Alpine.start();
+
+
+

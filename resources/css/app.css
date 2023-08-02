@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
 
+
+
+/* @import url('tom-select-custom.css'); */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -32,3 +36,6 @@
   ::-webkit-scrollbar-thumb:hover{
     background: #718096;
   }
+
+
+

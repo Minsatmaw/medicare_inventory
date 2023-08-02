@@ -23,7 +23,7 @@
 
             <div class="mb-4">
                 <label for="department_id" class="block mb-1 font-semibold ">Department</label>
-                <select name="department_id" id="department_id" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 department-option" >
+                <select name="department_id" id="department_id" class="w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 tom-select-element" >
                     <option value="">Choose the Department</option>
                     @foreach($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -37,7 +37,7 @@
 
             <div class="mb-4">
                 <label for="item_id" class="block mb-1 font-semibold">Item Name</label>
-                <select name="item_id" id="item_id" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 item-option">
+                <select name="item_id" id="item_id" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 item-option" disabled>
 
 
                 </select>
@@ -78,8 +78,8 @@
 
             <div class="mb-4">
                 <label for="person_id" class="block mb-1 font-semibold">Person</label>
-                <select name="person_id" id="person_id" class="w-full text-black border-gray-300 rounded-md shadow-sm search-option focus:border-blue-500 focus:ring focus:ring-blue-200">
-                    <option value="">Select Person</option>
+                <select name="person_id" id="person_id" class="w-full text-black border-gray-300 rounded-md shadow-sm search-option focus:border-blue-500 focus:ring focus:ring-blue-200 tom-select-element">
+                    <option  value="">Select Person</option>
                     @foreach($people as $person)
                         <option value="{{ $person->id }}">{{ $person->name }}</option>
                     @endforeach
@@ -89,7 +89,7 @@
 
             <div class="mb-4">
                 <label for="stock" class="block mb-1 font-semibold ">Stock</label>
-                <input type="number" name="stock" id="stock" class="w-full text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 @error('stock') border-red-700 is-invalid  @enderror" value="{{old('stock')}}">
+                <input type="number" name="stock" id="stock" class="w-full  text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 @error('stock') border-red-700 is-invalid  @enderror" value="{{old('stock')}}">
                 @error('stock')
                     <div class="text-red-600 invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -132,6 +132,7 @@
 
 @push('scripts')
 <script>
+
 
     //UPDATE code////////////////////////////////////////////////
      // Initialize TomSelect for the Department select element after updating its options
@@ -201,6 +202,9 @@
                     option.textContent = item.name;
                     itemSelect.appendChild(option);
                 });
+
+                itemSelect.disabled = false;
+
                 new TomSelect("#item_id",{
                         create: false,
                         sortField: {
@@ -213,32 +217,41 @@
 
         });
 
-        new TomSelect("#department_id",{
-            create: false,
-            sortField: {
-                field: "text",
-                direction: "asc"
-            }
-        });
-
-        // new TomSelect("#item_id",{
+        // new TomSelect("#department_id",{
         //     create: false,
         //     sortField: {
         //         field: "text",
         //         direction: "asc"
         //     }
         // });
-      
+
     //Before code //////////////////////////////////////////////////
 
-        new TomSelect("#person_id",{
-            create: false,
-            sortField: {
-                field: "text",
-                direction: "asc"
-            }
+        // new TomSelect("#person_id",{
+        //     create: false,
+        //     sortField: {
+        //         field: "text",
+        //         direction: "asc"
+        //     }
+        // });
+
+        // Find all select elements with the "tom-select-element" class
+        const tomSelectElements = document.querySelectorAll('.tom-select-element');
+
+        // Initialize TomSelect for each found select element
+        tomSelectElements.forEach(selectElement => {
+            new TomSelect(selectElement, {
+                create: false,
+                sortField: {
+                    field: "text",
+                    direction: "asc"
+                }
+            });
         });
 
-      
+
+
+
+
 </script>
 @endpush

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\GeneralSetting;
 use App\Models\User;
-use App\Models\general;
 use Illuminate\Auth\Access\Response;
 
-class GeneralPolicy
+class GeneralSettingPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class GeneralPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, general $general): bool
+    public function view(User $user, GeneralSetting $generalSetting): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class GeneralPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, general $general): bool
+    public function update(User $user, GeneralSetting $generalSetting): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class GeneralPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, general $general): bool
+    public function delete(User $user, GeneralSetting $generalSetting): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class GeneralPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, general $general): bool
+    public function restore(User $user, GeneralSetting $generalSetting): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class GeneralPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, general $general): bool
+    public function forceDelete(User $user, GeneralSetting $generalSetting): bool
     {
         //
     }

@@ -28,7 +28,7 @@
 
                 <div class="mb-4">
                     <label for="department_id" class="block mb-1 font-semibold text-gray-700">Department</label>
-                    <select name="department_id" id="department_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                    <select name="department_id" id="department_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 tom-select-element">
                         <option value="">Choose a Department</option>
                         @foreach($departments as $department)
                             <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -39,7 +39,7 @@
 
                 <div class="mb-4">
                     <label for="itemcategory_id" class="block mb-1 font-semibold text-gray-700">Category</label>
-                    <select name="itemcategory_id" id="itemcategory_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                    <select name="itemcategory_id" id="itemcategory_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 tom-select-element">
                         <option value="">Choose a Item Category</option>
                         @foreach($itemcategories as $itemcategory)
                             <option value="{{ $itemcategory->id }}">{{ $itemcategory->name }}</option>
@@ -49,7 +49,7 @@
 
                 <div class="mb-4">
                     <label for="location_id" class="block mb-1 font-semibold text-gray-700">Location</label>
-                    <select name="location_id" id="location_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                    <select name="location_id" id="location_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 tom-select-element">
                         @foreach($locations as $location)
                             <option value="{{ $location->id }}">{{ $location->name }}</option>
                         @endforeach
@@ -58,7 +58,7 @@
 
                 <div class="mb-4">
                     <label for="supplier_id" class="block mb-1 font-semibold text-gray-700">Supplier</label>
-                    <select name="supplier_id" id="supplier_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                    <select name="supplier_id" id="supplier_id" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 tom-select-element">
                         <option value="">Choose a Suplier</option>
                         @foreach($suppliers as $supplier)
                             <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
@@ -74,3 +74,25 @@
         </div>
     </div>
 @endsection
+
+
+@push('scripts')
+    <script>
+
+        // Find all select elements with the "tom-select-element" class
+        const tomSelectElements = document.querySelectorAll('.tom-select-element');
+
+        // Initialize TomSelect for each found select element
+        tomSelectElements.forEach(selectElement => {
+            new TomSelect(selectElement, {
+                create: false,
+                sortField: {
+                    field: "text",
+                    direction: "asc"
+                }
+            });
+        });
+
+
+    </script>
+@endpush
