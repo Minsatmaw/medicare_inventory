@@ -9,7 +9,7 @@
             </div>
         @endif
 
-        <div class="inline-block min-w-full overflow-hidden align-middle">
+        <div class="inline-block min-w-full overflow-hidden align-middle rounded-b-xl">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold">Department List</h2>
                 @can('department-create')
@@ -20,14 +20,14 @@
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Name</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Slug</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Actions</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Name</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Slug</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white ">
                         @foreach ($departments as $department)
-                            <tr>
+                            <tr class="{{ $loop->even ? 'bg-purple-200' : 'bg-purple-100' }}">
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $department->name }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $department->slug }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">

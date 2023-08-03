@@ -9,7 +9,7 @@
             </div>
         @endif
 
-        <div class="inline-block min-w-full overflow-hidden align-middle">
+        <div class="inline-block min-w-full overflow-hidden align-middle rounded-bl-xl">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold">Roles List</h2>
                 @can('role-create')
@@ -17,18 +17,18 @@
                 @endcan
             </div>
             @if ($roles->count() > 0)
-                <table class="min-w-full bg-white border border-gray-200">
+                <table class="min-w-full border">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Name</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Slug</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Description</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Actions</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Name</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Slug</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Description</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white ">
                         @foreach ($roles as $role)
-                            <tr>
+                            <tr class="{{ $loop->even ? 'bg-purple-200' : 'bg-purple-100' }}">
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $role->name }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $role->slug }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $role->description }}</td>

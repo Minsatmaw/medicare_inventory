@@ -6,4 +6,4 @@
 </a> --}}
 
 
-<img class="w-40 h-20 mx-auto" src="{{asset('img/Phase2LogoResized.gif')}}" alt="logo" {{$attributes}}>
+<img class="w-40 mx-auto h-27" src="{{asset('img/brand_logo.png')}}" alt="logo" {{$attributes}}>

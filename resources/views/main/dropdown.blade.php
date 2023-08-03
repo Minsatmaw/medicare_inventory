@@ -84,28 +84,11 @@
             </div>
         </div>
 
-        <div x-data="{ isOpen: false }">
-            <!-- Dropdown Group -->
-            <div>
-            <button @click="isOpen = !isOpen" class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium">
-                <span>Item</span>
-                <svg :class="{'rotate-180': isOpen}" class="w-4 h-4 transition-transform transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 3.586L3.707 9.879a1 1 0 101.414 1.414L10 6.414l4.879 4.879a1 1 0 001.414-1.414L10 3.586z" clip-rule="evenodd" />
-                </svg>
-            </button>
 
-            <!-- Dropdown Items -->
-            <ul x-show="isOpen" class="pl-4 pr-2 mt-2 space-y-1">
+        <a href="{{route('item_records.index')}}" class="block px-4 py-2 text-sm text-gray-700 capitalize hover:bg-blue-400 hover:rounded-2xl hover:text-white">
+            Item Records
+        </a>
 
-                <li>
-                    <a href="{{route('livewire.item-records')}}" class="block px-4 py-2 text-sm text-gray-700 capitalize hover:bg-blue-400 hover:rounded-2xl hover:text-white">
-                        Item Records
-                    </a>
-                </li>
-
-            </ul>
-            </div>
-        </div>
 
         <a href="{{route('people.index')}}" class="block px-4 py-2 text-sm text-gray-700 capitalize hover:bg-blue-400 hover:rounded-2xl hover:text-white">
             Operators List

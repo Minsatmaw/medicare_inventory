@@ -13,7 +13,8 @@ class GeneralSettingController extends Controller
      */
     public function index()
     {
-        //
+        $generalsettings = GeneralSetting::first();
+        return view('generalsettings.index', compact('generalsettings'));
     }
 
     /**
@@ -46,7 +47,7 @@ class GeneralSettingController extends Controller
     public function edit(GeneralSetting $generalSetting)
     {
         $generalsettings = GeneralSetting::first();
-        return view('main', compact('generalsettings'));
+        return view('generalsettings.index', compact('generalsettings'));
     }
 
     /**
@@ -57,7 +58,7 @@ class GeneralSettingController extends Controller
         $generalsettings = GeneralSetting::first();
         $generalsettings->update($request->all());
 
-        return redirect()->route('generalsettings.edit')->with('success', 'Change Successfully');
+        return redirect()->route('generalsettings.index')->with('success', 'Change Successfully');
     }
 
     /**

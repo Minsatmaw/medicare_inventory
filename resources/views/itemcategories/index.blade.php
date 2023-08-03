@@ -9,25 +9,26 @@
             </div>
         @endif
 
-        <div class="inline-block min-w-full overflow-hidden align-middle">
+        <div class="inline-block min-w-full overflow-hidden align-middle rounded-b-xl">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold">Item Categories List</h2>
+                <h2 class="px-4 py-2 text-2xl font-bold">Item Categories List</h2>
                 @can('itemcategory-create')
                     <a href="{{ route('itemcategories.create') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Create Item Categories</a>
                 @endcan
             </div>
+
             @if ($itemcategories->count() > 0)
-                <table class="min-w-full bg-white border border-gray-200">
+                <table class="min-w-full border">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Name</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Slug</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Actions</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Name</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Slug</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white ">
                         @foreach ($itemcategories as $itemcategory)
-                            <tr>
+                            <tr class="{{ $loop->even ? 'bg-purple-200' : 'bg-purple-100' }}">
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $itemcategory->name }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $itemcategory->slug }}</td>
                                 <td class="px-4 py-2 text-center border-b border-gray-200">

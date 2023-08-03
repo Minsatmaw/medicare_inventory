@@ -48,14 +48,14 @@
 
             </div> --}}
 
-            <div x-cloak :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-white lg:translate-x-0 lg:static lg:inset-0">
+            <div x-cloak :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-100 lg:translate-x-0 lg:static lg:inset-0">
                 @include('main.sidebar')
             </div>
 
-            <div class="flex flex-col flex-1 overflow-hidden">
+            <div class="flex flex-col flex-1 overflow-hidden bg-gray-100">
                 @include('main.header')
 
-                <main class="flex-1 overflow-y-auto bg-gray-50 ">
+                <main class="flex-1 overflow-y-auto bg-gray-150 ">
                     <div class="container px-2 py-2 mx-auto">
                         @yield('body')
                     </div>
@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <footer class="relative pt-8 bg-blueGray-200">
+        <footer class="relative bg-blueGray-200">
             @include('main.footer')
         </footer>
     </div>

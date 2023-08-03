@@ -3,6 +3,8 @@
 
 
 use App\Models\Item;
+use App\Models\ItemRecord;
+use App\Http\Livewire\ItemRecords;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
@@ -10,15 +12,14 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonController;
-use App\Http\Controllers\ItemStockController;
-use App\Http\Controllers\ItemRecordController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ItemStockController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ItemRecordController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ItemcategoryController;
-use App\Http\Livewire\ItemRecords;
-use App\Models\ItemRecord;
+use App\Http\Controllers\GeneralSettingController;
 use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
 
 /*
@@ -63,8 +64,9 @@ Route::middleware([
 
   // Route::resource('it_records', ItRecordController::class)->only(['index', 'create', 'store']);
   Route::resource('item_stocks', ItemStockController::class)->only(['index', 'create', 'store']);
+  Route::resource('item_records', ItemRecordController::class)->only(['index']);
 
-  Route::resource('generalsettings', GeneratorSettingsController::class)->only('edit','update');
+  Route::resource('generalsettings', GeneralSettingController::class);
 
   Route::get('/items/related-items/{departmentId}', [ItemController::class, 'getRelatedItems'])->name('items.relatedItems');
 
@@ -73,7 +75,7 @@ Route::middleware([
 
 
   //livewire routes
-  Route::get('/item_records', function () {
+  Route::get('/item_records_backup', function () {
     return view('livewire.item-records');
   })->name('livewire.item-records');
 

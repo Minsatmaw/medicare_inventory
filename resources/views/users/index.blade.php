@@ -9,7 +9,7 @@
             </div>
         @endif
 
-        <div class="inline-block min-w-full overflow-hidden align-middle">
+        <div class="inline-block min-w-full overflow-hidden align-middle rounded-b-xl">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold">Users List</h2>
                 @can('user-create')
@@ -18,19 +18,19 @@
             </div>
 
             @if ($users->count() > 0)
-                <table class="min-w-full text-left bg-white border shadow-md border-gray-250">
+                <table class="min-w-full border">
                     <thead>
-                        <tr class="bg-gray-100 ">
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Name</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Email</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Roles</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Departments</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Actions</th>
+                        <tr>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Name</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Email</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Roles</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Departments</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white">
                         @foreach ($users as $user)
-                            <tr class=" hover:bg-gray-50">
+                            <tr class="{{ $loop->even ? 'bg-purple-200' : 'bg-purple-100' }}">
                                 {{-- <td class="px-4 py-2 text-center border-b border-gray-200 ">{{ $user->name }}</td> --}}
                                 <td class="px-4 py-2 border-b border-gray-200">
                                     <div class="font-medium text-gray-700">{{$user->name}}</div>
@@ -39,9 +39,9 @@
 
                                 <td class="px-4 py-2 border-b border-gray-200">{{ $user->email }}</td>
 
-                                <td class="px-4 py-2 border-b border-gray-200">
+                                <td class="px-4 py-2 text-center border-b border-gray-200">
                                     @foreach($user->roles as $role)
-                                        <span class="inline-block px-2 py-1 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full ">{{ $role->slug }}</span>
+                                        <span class="inline-block px-2 py-1 text-xs font-semibold text-white bg-purple-500 rounded-full">{{ $role->name }}</span>
                                     @endforeach
                                 </td>
 

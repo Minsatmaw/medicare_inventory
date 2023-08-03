@@ -15,6 +15,8 @@ class ItemRecordController extends Controller
     public function index()
     {
 
+        $itemRecords = ItemRecord::paginate(10);
+        return view('item_records.index', compact('itemRecords'));
     }
 
     /**

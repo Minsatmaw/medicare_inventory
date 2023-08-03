@@ -9,7 +9,7 @@
             </div>
         @endif
 
-        <div class="inline-block min-w-full overflow-hidden align-middle">
+        <div class="inline-block min-w-full overflow-hidden align-middle rounded-b-xl">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold">Item List</h2>
                 @can('item-create')
@@ -17,21 +17,21 @@
                 @endcan
             </div>
             @if ($items->count() > 0)
-                <table class="min-w-full bg-white border border-gray-200">
+                <table class="min-w-full border">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Code</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Name</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Department</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Category</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Location</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Supplier</th>
-                            <th class="px-4 py-2 text-white uppercase bg-gray-400 border border-gray-200">Actions</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Code</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Name</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Department</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Category</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Location</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Supplier</th>
+                            <th class="px-4 py-2 text-lg text-gray-100 uppercase bg-purple-400 border border-gray-200">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white ">
                         @foreach ($items as $item)
-                            <tr>
+                            <tr class="{{ $loop->even ? 'bg-purple-200' : 'bg-purple-100' }}">
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->code }}</td>
 
                                 <td class="px-4 py-2 text-center border-b border-gray-200">{{ $item->name }}</td>

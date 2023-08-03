@@ -2,7 +2,7 @@
     <div class="flex flex-col w-64 overflow-hidden bg-white ">
       {{-- Logo --}}
       <div class="flex items-center justify-center h-20 shadow-md">
-        <img class="w-40 h-20 mx-auto" src="{{asset('img/Phase2LogoResized.gif')}}" alt="logo">
+        <img class="w-40 h-20 mx-auto" src="{{asset('img/brand_logo.png')}}" alt="logo">
       </div>
       <ul class="flex flex-col py-4">
             {{-- Item Stock List --}}
@@ -13,25 +13,11 @@
             </li>
 
             {{-- Item Records --}}
-            <li x-data="{ isOpenthree: localStorage.getItem('dropdownOpenthree') === 'true' || false }" x-init="localStorage.setItem('dropdownOpenthree', isOpenthree)">
-            <!-- Dropdown Group -->
-            <div>
-                <button @click="isOpenthree = !isOpenthree; localStorage.setItem('dropdownOpenthree', isOpenthree)" class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
-                    <span class="mx-3">Item Records</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
-                    </svg>
-                </button>
 
-                <!-- Dropdown Items -->
-                <ul x-show="isOpenthree" @click.away="isOpenthree = false; localStorage.setItem('dropdownOpenthree', false)" class="pl-4 pr-2 mt-2 space-y-1">
-                    <li class="{{ Request::is('item_records*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-                        <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('livewire.item-records')}}">
-                            <span class="mx-3">Item Records</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <li class="{{ Request::is('item_records*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
+                <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('item_records.index')}}">
+                    <span class="mx-3">Item Records</span>
+                </a>
             </li>
 
             {{-- Item Management --}}
@@ -77,9 +63,9 @@
 
             {{-- Operator --}}
             <li class="{{ Request::is('people*') ? '  bg-gray-100 rounded-r-2xl' : '' }}">
-            <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('people.index')}}">
-                <span class="mx-3">Operator</span>
-            </a>
+                <a class="flex items-center h-12 px-6 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800" href="{{route('people.index')}}">
+                    <span class="mx-3">Operator</span>
+                </a>
             </li>
 
             {{-- User Management --}}
