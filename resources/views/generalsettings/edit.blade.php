@@ -8,20 +8,17 @@
 
             </div>
 
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="px-4 py-2 text-2xl font-bold rounded-md">Item Stock List </h2>
-                <span><a href="{{ route('generalsettings.edit', ['generalsetting' => $generalsettings->id]) }}"><button type="submit" class="px-4 py-2 font-bold text-white">Item In/Out Form</button></a></span>
-            </div>
 
-            <h1 class="text-xl font-bold capitalize">General settings</h1>
-            <form action="" method="POST">
+
+            <h1 class="text-xl font-bold text-white capitalize dark:text-white">General settings</h1>
+            <form action="{{route('generalsettings.update', $generalsetting->id)}}" method="POST">
                 @csrf
                 @method('PUT')
 
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                     <div>
-                        <label for="brand_name" class="" for="brandname">Brand Name</label>
-                        <input name="brand_name" id="brand_name" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md ">
+                        <label for="brand_name" class="text-white dark:text-gray-200" for="brandname">Brand Name</label>
+                        <input name="brand_name" id="brand_name" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
                     </div>
 
                     <div>

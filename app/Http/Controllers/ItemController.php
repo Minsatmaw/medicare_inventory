@@ -90,9 +90,8 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        $items = Item::with('itemcategory', 'supplier', 'location', 'department')->get();
 
-        return view('items.show', compact('items'));
+        return view('items.show', compact('item'));
     }
 
     /**

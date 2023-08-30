@@ -201,27 +201,27 @@
 .ts-control input {
   color: #303030;
   font-family: inherit;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 15px;
+  line-height: 21px;
   font-smoothing: inherit;
 }
 
 .ts-control,
 .ts-wrapper.single.input-active .ts-control {
-  background: #fff;
+  background: white;
   cursor: text;
 }
 
 .ts-control {
   border: 1px solid #d0d0d0;
-  padding: 8px 8px;
+  padding: 10px;
   width: 100%;
   overflow: hidden;
   position: relative;
   z-index: 1;
   box-sizing: border-box;
   box-shadow: none;
-  border-radius: 3px;
+  border-radius: 6px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -263,7 +263,7 @@
   flex: 1 1 auto;
   min-width: 7rem;
   display: inline-block !important;
-  padding: 0 !important;
+  padding: 2px !important;
   min-height: 0 !important;
   max-height: none !important;
   max-width: 100% !important;

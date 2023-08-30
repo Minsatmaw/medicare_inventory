@@ -12,9 +12,12 @@
         <div class="inline-block min-w-full overflow-hidden align-middle rounded-b-xl">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold">Item List</h2>
-                @can('item-create')
+
+                <a href="{{ route('items.create') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Create Item</a>
+
+                {{-- @can('item-create')
                     <a href="{{ route('items.create') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Create Item</a>
-                @endcan
+                @endcan --}}
             </div>
             @if ($items->count() > 0)
                 <table class="min-w-full border">
@@ -60,16 +63,26 @@
 
                                 <td class="px-4 py-2 text-center border-b border-gray-200">
                                     <a href="{{ route('items.show', $item->id) }}" class="text-blue-500 hover:underline">View</a>
-                                    @can('item-create')
+
+                                    <a href="{{ route('items.edit', $item->id) }}" class="text-yellow-500 hover:underline">Edit</a>
+
+                                    {{-- @can('item-edit')
                                         <a href="{{ route('items.edit', $item->id) }}" class="text-yellow-500 hover:underline">Edit</a>
-                                    @endcan
-                                    @can('item-delete')
+                                    @endcan --}}
+
+                                    <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:underline">Delete</button>
+                                    </form>
+
+                                    {{-- @can('item-delete')
                                         <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-500 hover:underline">Delete</button>
                                         </form>
-                                    @endcan
+                                    @endcan --}}
                                 </td>
                             </tr>
                         @endforeach

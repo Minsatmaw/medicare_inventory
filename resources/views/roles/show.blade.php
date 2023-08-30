@@ -2,11 +2,11 @@
 
 @section('body')
     <div class="py-4">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-lg sm:px-6 lg:px-8">
             <div class="mb-6">
                 <h2 class="text-2xl font-bold">Role Details</h2>
             </div>
-            <div class="bg-white rounded-md shadow-md p-6">
+            <div class="p-6 bg-white rounded-md shadow-md">
                 <div class="mb-4">
                     <h3 class="text-lg font-semibold">Name:</h3>
                     <p>{{ $role->name }}</p>
@@ -20,7 +20,7 @@
                     <p>{{ $role->description }}</p>
                 </div>
                 <div class="mt-4">
-                    <a href="{{ route('roles.index') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Back</a>
+                    <a href="{{ route('roles.index') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Back</a>
                 </div>
             </div>
         </div>
