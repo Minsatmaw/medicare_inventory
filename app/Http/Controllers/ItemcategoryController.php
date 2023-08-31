@@ -75,6 +75,6 @@ class ItemcategoryController extends Controller
     public function destroy(Itemcategory $itemcategory)
     {
         $itemcategory->delete();
-        return redirect('itemcategories.index')->with('success','Item Category deleted successfully');
+        return redirect()->route('itemcategories.index')->with('success','Item Category deleted successfully');
     }
 }
