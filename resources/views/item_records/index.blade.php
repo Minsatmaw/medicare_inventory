@@ -4,7 +4,8 @@
     <div class="py-4">
         <div class="inline-block min-w-full overflow-hidden align-middle rounded-b-xl">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="px-4 py-2 text-2xl font-bold rounded-md">{{ get_setting('app_title', 'Default Title') }}</h2>
+                <h2 class="px-4 py-2 text-2xl font-bold rounded-md">Default Title</h2>
+                {{-- <h2 class="px-4 py-2 text-2xl font-bold rounded-md">{{ get_setting('app_title', 'Default Title') }}</h2> --}}
 
             </div>
 
