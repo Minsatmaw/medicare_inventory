@@ -15,10 +15,13 @@
         @endif
 
         <div class="inline-block min-w-full overflow-hidden align-middle rounded-b-xl">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="px-4 py-2 text-2xl font-bold rounded-md">Item Stock List </h2>
-                <span><a href="{{ route('item_stocks.create') }}"><button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Item In/Out Form</button></a></span>
-            </div>
+            <h2 class="px-4 py-2 text-2xl font-bold rounded-md">Item Stock Lists</h2>
+
+            @can('item-in-out')
+                <div class="flex items-center justify-between mb-6">
+                    <span><a href="{{ route('item_stocks.create') }}"><button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Item In/Out Form</button></a></span>
+                </div>
+            @endcan
 
             @if ($itemStocks->count() > 0)
                 <table class="min-w-full border">
