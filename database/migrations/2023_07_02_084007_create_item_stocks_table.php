@@ -17,6 +17,7 @@ return new class extends Migration
       $table->foreignId('item_id')->constrained()->onDelete('cascade');
       $table->string('department_id');
       $table->unsignedBigInteger('stock');
+      $table->longText('description')->nullable();
       $table->boolean('is_in')->default(true);
       $table->timestamps();
     });
