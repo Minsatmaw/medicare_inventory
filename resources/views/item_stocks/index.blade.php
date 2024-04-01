@@ -14,14 +14,36 @@
           </div>
         @endif
 
-        <div class="inline-block min-w-full overflow-hidden align-middle rounded-b-xl">
+        <div>
             <h2 class="px-4 py-2 text-2xl font-bold rounded-md">Item Stock Lists</h2>
 
-            @can('item-in-out')
-                <div class="flex items-center justify-between mb-6">
-                    <span><a href="{{ route('item_stocks.create') }}"><button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Item In/Out Form</button></a></span>
+            <div class="flex items-center justify-between mb-2">
+                @can('item-in-out')
+                    <div class="flex items-center justify-between mb-2">
+                        <span><a href="{{ route('item_stocks.create') }}"><button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Item In/Out Form</button></a></span>
+                    </div>
+                @endcan
+
+                <div class="flex items-center justify-center mb-4">
+                    <form action="{{ route('item_stock.search') }}" method="GET" class="flex items-center">
+                        @csrf
+                        <input type="text" name="search" id="search" placeholder="Search" class="px-4 py-2 mr-1 border rounded-lg" value="{{ request()->query('search') }}" />
+
+                        <button type="submit" class="px-4 py-2 font-bold text-white bg-indigo-500 rounded-lg hover:bg-blue-700">Search</button>
+                        <button type="button" onclick="document.getElementById('search').value=''; this.form.submit();" class="px-4 py-2 font-bold text-white bg-red-500 rounded-lg hover:bg-red-700">Clear</button>
+                    </form>
                 </div>
-            @endcan
+
+                <div class="flex items-center justify-between mb-2">
+                    <span><a href="{{ route('item_stock.export') }}"><button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Export</button></a></span>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="inline-block min-w-full overflow-hidden align-middle rounded-b-xl">
 
             @if ($itemStocks->count() > 0)
                 <table class="min-w-full border">

@@ -64,6 +64,8 @@ Route::middleware([
 
   // Route::resource('it_records', ItRecordController::class)->only(['index', 'create', 'store']);
   Route::resource('item_stocks', ItemStockController::class)->only(['index', 'create', 'store']);
+  Route::get('item_stocks/export/', [ItemStockController::class, 'export'])->name('item_stock.export');
+  Route::get('item_stocks/search/', [ItemStockController::class, 'search'])->name('item_stock.search');
   Route::resource('item_records', ItemRecordController::class)->only(['index']);
 
   Route::resource('generalsettings', GeneralSettingController::class);

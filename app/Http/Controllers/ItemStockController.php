@@ -8,18 +8,45 @@ use App\Models\ItemStock;
 use App\Models\Department;
 use App\Models\ItemRecord;
 use Illuminate\Http\Request;
+use App\Exports\ItemStockExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ItemStockController extends Controller
 {
   /**
    * Display a listing of the resource.
    */
+
+
+  public function export()
+  {
+    return Excel::download(new ItemStockExport, 'item_stocks.xlsx');
+  }
+
   public function index()
   {
     $itemStocks = ItemStock::with(['person', 'item', 'department'])->paginate(10);
 
     return view('item_stocks.index', compact('itemStocks'));
   }
+
+  public function search(Request $request)
+  {
+    $search = $request->search;
+
+    $itemStocks = ItemStock::whereHas('item', function ($query) use ($search) {
+        $query->where('name', 'like', "%{$search}%")
+                ->orWhereHas('location', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                });
+    })->with(['person', 'item', 'department'])->latest()->paginate(10);
+
+    return view('item_stocks.index', compact('itemStocks'));
+  }
+
+
+
+
 
   /**
    * Show the form for creating a new resource.
@@ -36,7 +63,7 @@ class ItemStockController extends Controller
   }
 
 
- 
+
 
 
   /**
@@ -119,4 +146,5 @@ class ItemStockController extends Controller
   {
     //
   }
+
 }
