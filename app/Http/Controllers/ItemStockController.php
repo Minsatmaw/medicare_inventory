@@ -39,7 +39,7 @@ class ItemStockController extends Controller
                 ->orWhereHas('location', function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%");
                 });
-    })->with(['person', 'item', 'department'])->latest()->paginate(10);
+    })->with(['person', 'item', 'department'])->latest()->paginate(15);
 
     return view('item_stocks.index', compact('itemStocks'));
   }
